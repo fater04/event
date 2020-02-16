@@ -9,63 +9,37 @@
 
 
 
-<!---->
-<!--<div class="row">-->
-<!--    <div class="col-lg-3 col-md-6">-->
-<!--        <div class="widget-bg-color-icon card-box">-->
-<!--            <div class="bg-icon bg-icon-success pull-left">-->
-<!--                <i class="mdi mdi-android-studio text-success"></i>-->
-<!--            </div>-->
-<!--            <div class="text-right">-->
-<!--                <h3 class=" m-t-10"><b class="counter">64,570</b></h3>-->
-<!--                <p class="text-muted mb-0">Today's Visits</p>-->
-<!--            </div>-->
-<!--            <div class="clearfix"></div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="col-lg-3 col-md-6">-->
-<!--        <div class="widget-bg-color-icon card-box fadeInDown animated">-->
-<!--            <div class="bg-icon bg-icon-primary pull-left">-->
-<!--                <i class="mdi mdi-amazon text-info"></i>-->
-<!--            </div>-->
-<!--            <div class="text-right">-->
-<!--                <h3 class=" m-t-10"><b class="counter">31,570</b></h3>-->
-<!--                <p class="text-muted mb-0">Total Revenue</p>-->
-<!--            </div>-->
-<!--            <div class="clearfix"></div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!---->
-<!--    <div class="col-lg-3 col-md-6">-->
-<!--        <div class="widget-bg-color-icon card-box">-->
-<!--            <div class="bg-icon bg-icon-danger pull-left">-->
-<!--                <i class="mdi mdi-apple text-pink"></i>-->
-<!--            </div>-->
-<!--            <div class="text-right">-->
-<!--                <h3 class=" m-t-10"><b class="counter">280</b></h3>-->
-<!--                <p class="text-muted mb-0">Today's Sales</p>-->
-<!--            </div>-->
-<!--            <div class="clearfix"></div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!---->
-<!--    <div class="col-lg-3 col-md-6">-->
-<!--        <div class="widget-bg-color-icon card-box">-->
-<!--            <div class="bg-icon bg-icon-purple pull-left">-->
-<!--                <i class="mdi mdi-barley text-purple"></i>-->
-<!--            </div>-->
-<!--            <div class="text-right">-->
-<!--                <h3 class=" m-t-10"><b class="counter">0.16</b>%</h3>-->
-<!--                <p class="text-muted mb-0">Conversion</p>-->
-<!--            </div>-->
-<!--            <div class="clearfix"></div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!-- end row -->
-
-
 <div class="row">
+
+<!--    <div class="col-lg-6">-->
+<!--        <div class="portlet"><!-- /primary heading -->
+<!--            <div class="portlet-heading">-->
+<!--                <h3 class="portlet-title text-dark">-->
+<!--                    Statistique-->
+<!--                </h3>-->
+<!--                <div class="clearfix"></div>-->
+<!--            </div>-->
+<!--            <div id="portlet2" class="panel-collapse collapse show">-->
+<!--                <div class="portlet-body">-->
+<!--                    <canvas id="doughnut" height="300"></canvas>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div> <div class="col-lg-6">-->
+<!--        <div class="portlet"><!-- /primary heading -->
+<!--            <div class="portlet-heading">-->
+<!--                <h3 class="portlet-title text-dark">-->
+<!--                    Statistique-->
+<!--                </h3>-->
+<!--                <div class="clearfix"></div>-->
+<!--            </div>-->
+<!--            <div id="portlet2" class="panel-collapse collapse show">-->
+<!--                <div class="portlet-body">-->
+<!--                    <canvas id="doughnut" height="300"></canvas>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
                             <div class="col-lg-4">
                                 <div class="text-center card-box">
                                     <div class="pt-2 pb-2">
@@ -153,7 +127,6 @@
                                     </div> <!-- end .padding -->
                                 </div> <!-- end card-box-->
                             </div>
-                            <!-- end col -->
 
                         </div>
 

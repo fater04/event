@@ -489,7 +489,6 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 <script src="<?php echo app::js("parsley.min") ?>"></script>
 <script src="<?php echo app::autre("plugins/notifications/notify.min.js") ?>"></script>
 <script src="<?php echo app::autre("plugins/notifications/notify-metro.js") ?>"></script>
-
 <script src="<?php echo app::autre("plugins/chart.js/Chart.bundle.min.js") ?>"></script>
 <script type="text/javascript">
 

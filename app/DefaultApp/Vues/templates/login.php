@@ -50,7 +50,11 @@ if(\app\DefaultApp\Models\Utilisateur::session()){
     <?php if(isset($erreur)){echo $erreur;} ?>
     <?php if(isset($contenue)){echo $contenue;} ?>
 </div>
+<!--<footer class="text-center">-->
+<!--    --><?//= date('Y')?><!--© B-EVENT <span class="hide-phone">-BIOS</span>-->
+<!--</footer>-->
 
+</div>
 
 <script>
     var resizefunc = [];
