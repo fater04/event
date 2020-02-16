@@ -2,3 +2,4 @@
 
 .idea/
 /.htaccess
+/app/DefaultApp/configuration.php

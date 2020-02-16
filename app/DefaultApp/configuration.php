@@ -23,6 +23,6 @@ $configuration=array(
     "url"=>$_GET['url'],
     "database"=>$database,
     "configurationEmail"=>$configurationEmail,
-    "dossierProjet"=>"event/",
+    "dossierProjet"=>"/event",
     "nomApp"=>"DefaultApp"
 );

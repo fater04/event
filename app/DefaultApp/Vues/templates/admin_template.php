@@ -37,14 +37,6 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     <title>B-EVENT ~ <?php if (isset($titre)) echo $titre ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!--    <script src="--><?php //echo app::autre("") ?><!--"></script>-->
-    <!--    <script src="--><?php //echo app::autre("") ?><!--"></script>-->
-    <!--    <script src="--><?php //echo app::autre("") ?><!--"></script>-->
-    <!---->
-    <!---->
-    <!--    <script src="--><?php //echo app::js("") ?><!--"></script>-->
-    <!--    <script src="--><?php //echo app::js("") ?><!--"></script>-->
-    <!--    <script src="--><?php //echo app::js("") ?><!--"></script>-->
     <link href="<?php echo app::autre("plugins/bootstrap-datepicker/bootstrap-datepicker.min.css") ?>" rel="stylesheet">
     <link href="<?php echo app::autre("plugins/bootstrap-datepicker/daterangepicker.css") ?>" rel="stylesheet">
     <link href="<?php echo app::autre("plugins/fullcalendar/fullcalendar.min.css") ?>" rel="stylesheet">
@@ -107,35 +99,6 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                         <i class="mdi mdi-crop-free noti-icon"></i>
                     </a>
                 </li>
-
-
-                <!--                <li class="list-inline-item dropdown notification-list">-->
-                <!--                    <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown"-->
-                <!--                       href="#" role="button"-->
-                <!--                       aria-haspopup="false" aria-expanded="false">-->
-                <!--                        <i class="mdi mdi-bell noti-icon"></i>-->
-                <!--                        <span class="badge badge-pink noti-icon-badge">4</span>-->
-                <!--                    </a>-->
-                <!--                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg"-->
-                <!--                         aria-labelledby="Preview">-->
-                <!--                        <div class="dropdown-item noti-title">-->
-                <!--                            <h5 class="font-16"><span class="badge badge-danger float-right">5</span>Notification</h5>-->
-                <!--                        </div>-->
-                <!---->
-                <!--                        <a href="javascript:void(0);" class="dropdown-item notify-item">-->
-                <!--                            <div class="notify-icon bg-success"><i class="mdi mdi-comment-account"></i></div>-->
-                <!--                            <p class="notify-details">Robert S. Taylor commented on Admin-->
-                <!--                                <small class="text-muted">1 min ago</small>-->
-                <!--                            </p>-->
-                <!--                        </a>-->
-                <!---->
-                <!--                        <a href="javascript:void(0);" class="dropdown-item notify-item notify-all">-->
-                <!--                            View All-->
-                <!--                        </a>-->
-                <!---->
-                <!--                    </div>-->
-                <!--                </li>-->
-
                 <li class="list-inline-item dropdown notification-list">
                     <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown"
                        href="#" role="button"
@@ -198,8 +161,6 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                 <!--- Divider -->
                 <div id="sidebar-menu">
                     <ul>
-                        <!--                    <li class="menu-title">Main</li>-->
-
                         <li>
                             <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("Home") ?>"
                                class="waves-effect waves-primary">
@@ -684,41 +645,6 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     });
 
 </script>
-
-<!---->
-<!--<script type="text/javascript">-->
-<!--    $(document).ready(function() {-->
-<!---->
-<!--        // Default Datatable-->
-<!--        $('#datatable').DataTable();-->
-<!---->
-<!--        //Buttons examples-->
-<!--        var table = $('#datatable-buttons').DataTable({-->
-<!--            lengthChange: false,-->
-<!--            buttons: ['copy', 'excel', 'pdf']-->
-<!--        });-->
-<!---->
-<!--        // Key Tables-->
-<!---->
-<!--        $('#key-table').DataTable({-->
-<!--            keys: true-->
-<!--        });-->
-<!---->
-<!--        // Responsive Datatable-->
-<!--        $('#responsive-datatable').DataTable();-->
-<!---->
-<!--        // Multi Selection Datatable-->
-<!--        $('#selection-datatable').DataTable({-->
-<!--            select: {-->
-<!--                style: 'multi'-->
-<!--            }-->
-<!--        });-->
-<!---->
-<!--        table.buttons().container()-->
-<!--            .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');-->
-<!--    } );-->
-<!---->
-<!--</script>-->
 
 </body>
 </html>
