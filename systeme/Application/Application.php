@@ -15,6 +15,7 @@ use systeme\Assette\Assette;
 use systeme\Database\DbConnection;
 use systeme\Model\Mail;
 use systeme\Routeur\Routeur;
+use systeme\Model\Backup;
 class Application extends Session
 {
 
@@ -85,6 +86,10 @@ class Application extends Session
 
     public static function ROOT(){
         return $_SERVER['DOCUMENT_ROOT']."/".self::$dossierProjet."/";
+    }
+    public static function Backup(){
+        $bck=new Backup($_SESSION['database'],self::ROOT());
+        return $bck->make();
     }
 
     public static function css($css){

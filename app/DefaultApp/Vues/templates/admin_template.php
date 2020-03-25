@@ -34,7 +34,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>B-EVENT ~ <?php if (isset($titre)) echo $titre ?></title>
+    <title>B-EVENT ~ <?php if (isset($titre)) echo $titre ;?>  </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="<?php echo app::autre("plugins/bootstrap-datepicker/bootstrap-datepicker.min.css") ?>" rel="stylesheet">
