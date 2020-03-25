@@ -104,7 +104,9 @@ class LoginControlleur extends Controlleur
         $variable['titre'] = "Recover";
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $email = trim(addslashes($_POST['email']));
-            // \systeme\Application\Application::envoyerEmail($email . "," . $pseudo, "Email de Confirmation", $message);
+            $lien_activivation = "http://".$_SERVER['HTTP_HOST']."/recover-".\app\DefaultApp\Models\Utilisateur::return_id_via_email($email);
+            $message = \app\DefaultApp\Models\Utilisateur::email_confirme($lien_activivation);
+            \systeme\Application\Application::envoyerEmail($email . "," . $pseudo, "Email de Recuperation", $message);
             $variable['erreur'] = "<div class=\"alert  alert-info\">
                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>
                    <b></b>Email</b> sent,verify your <b>email</b> address to follow the instructions.
@@ -117,6 +119,42 @@ class LoginControlleur extends Controlleur
         }
 
         return $this->render("pages/recover", $variable);
+
+    }
+
+    public function recoverPassword($id)
+    {
+
+        $variable = array();
+        $variable['titre'] = "Recover";
+        $variable['id']=$id;
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $id = trim(addslashes($_POST['idd']));
+            $pass1 = trim(addslashes($_POST['pass1']));
+            $pass2 = trim(addslashes($_POST['pass2']));
+            if ($pass===$pass1) {
+                $r = \app\DefaultApp\Models\Utilisateur::changePassword($id, $pass2);
+                if ($r == "ok") {
+                  
+                    $variable['erreur'] = "<div class=\"alert  alert-success\">
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>
+                   <b>Modification</b> effectuee avec Succes.
+                </div>";
+                } else {
+                    $variable['erreur'] = "<div class=\"alert alert-warning alert-dismissable\">
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>
+                    " . $r . ".
+                </div>";
+                }
+            } else {
+                $variable['erreur'] = "<div class=\"alert  alert-success\">
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>
+                   Les <b>mots de passe </b> ne sont pas <b></b>Identiques.
+                </div>";
+            }
+        }
+
+        return $this->render("pages/newpassword", $variable);
 
     }
 

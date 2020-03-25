@@ -8,19 +8,24 @@
                                     <a href="#">
                                     <strong style="font-size:28px"><i class="mdi mdi-calendar-multiple-check"></i> <span>B-EVENT</span> </strong>
                                     </a>
-                                    <p class="text-muted mb-4 mt-3">Enter your email address and we'll send you an email with instructions to reset your password.</p>
+                                    <p class="text-muted mb-4 mt-3">&nbsp;&nbsp;</p>
                                 </div>
 
 
                                 <form action="#" method="post">
 
                                     <div class="form-group mb-3">
-                                        <label for="emailaddress">Email address</label>
-                                        <input type="email" class="form-control" placeholder="Enter your Email" required="" name="email">
+                                        <label for="emailaddress">New Password</label>
+                                        <input type="hidden" class="form-control" name="idd" value="<?=$id?>"/>
+                                        <input type="password" class="form-control" placeholder="Enter Password" required="" name="pass1">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="emailaddress">Confirmed Password</label>
+                                        <input type="password" class="form-control" placeholder="Enter Password" required="" name="pass2">
                                     </div>
 
                                     <div class="form-group mb-0 text-center">
-                                        <button class="btn btn-primary btn-block" type="submit"> Reset Password </button>
+                                        <button class="btn btn-primary btn-block" type="submit">Reset </button>
                                     </div>
 
                                 </form>

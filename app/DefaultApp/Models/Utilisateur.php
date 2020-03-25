@@ -473,6 +473,17 @@ static function ajouter_user_event($id_user, $id_event)
 }
 
 public
+static function return_id_via_email($email)
+{
+    $con = self::connection();
+    $req = "SELECT id FROM  utilisateur where email='" . $email. "'";
+    $rps = $con->query($req);
+    $data = $rps->fetch();
+    $id = $data['id'];
+    $con = null;
+    return $id;
+}
+public
 static function return_event($id)
 {
     $con = self::connection();

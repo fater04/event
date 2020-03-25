@@ -22,6 +22,7 @@ App::post("/login", "Login.login", "login");
 App::get("/logout", "Login.logout","logout");
 App::get("/lock-:id", "Login.lock", "lock")->avec("id","['0-9']+");
 App::post("/lock-:id", "Login.lock", "lock")->avec("id","['0-9']+");
+App::get("/recover-:id", "Login.recoverPassword", "recover")->avec("id","['0-9']+");
 App::get("/recover", "Login.recover", "recover");
 App::post("/recover", "Login.recover", "recover");
 App::get("/confirme-:id", "Login.confirme", "confirme")->avec("id","['0-9']+");
