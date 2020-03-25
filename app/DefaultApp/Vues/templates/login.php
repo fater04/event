@@ -36,47 +36,29 @@ if(\app\DefaultApp\Models\Utilisateur::session()){
     <meta name="viewport" content="width=device-width,initial-scale=1">
    <title> B-EVENT ~ <?php if (isset($titre)) echo $titre ?></title>
 
-    <link href="<?php echo app::autre("plugins/switchery/switchery.min.css") ?>" rel="stylesheet">
-    <link href="<?php echo app::css("bootstrap.min") ?>" rel="stylesheet">
-    <link href="<?php echo app::css("icons") ?>" rel="stylesheet">
-    <link href="<?php echo app::css("style") ?>" rel="stylesheet">
-    <script src="<?php echo app::js("modernizr.min") ?>"></script>
+        <link href="<?= app::autre('assets/css/bootstrap.min.css')?>"  rel="stylesheet" type="text/css" />
+        <link href="<?= app::autre('assets/css/icons.min.css')?>" rel="stylesheet" type="text/css" />
+        <link href="<?= app::autre('assets/css/app.min.css')?>" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
 
-<div class="wrapper-page">
+<div class="account-pages mt-5 mb-5">
+            <div class="container">
+            
 
+            
     <?php if(isset($erreur)){echo $erreur;} ?>
     <?php if(isset($contenue)){echo $contenue;} ?>
-</div>
-<!--<footer class="text-center">-->
-<!--    --><?//= date('Y')?><!--© B-EVENT <span class="hide-phone">-BIOS</span>-->
-<!--</footer>-->
 
 </div>
+        </div>
+         <footer class="footer footer-alt">
+        <?= date('Y')?> &copy; B-EVENT by <a href="https://www.bioshaiti.com" class="text-muted">BIOS</a> 
+        </footer>
+        <script src="<?= app::autre('assets/js/vendor.min.js')?>"></script>
+        <script src="<?= app::autre('assets/js/app.min.js')?>"></script>
 
-<script>
-    var resizefunc = [];
-</script>
-
-<!-- Plugins  -->
-<script src="<?php echo app::js("jquery.min") ?>"></script>
-<script src="<?php echo app::js("popper.min") ?>"></script>
-<script src="<?php echo app::js("bootstrap.min") ?>"></script>
-<script src="<?php echo app::js("detect") ?>"></script>
-<script src="<?php echo app::js("fastclick") ?>"></script>
-<script src="<?php echo app::js("jquery.slimscroll") ?>"></script>
-<script src="<?php echo app::js("jquery.blockUI") ?>"></script>
-<script src="<?php echo app::js("waves") ?>"></script>
-<script src="<?php echo app::js("wow.min") ?>"></script>
-<script src="<?php echo app::js("jquery.nicescroll") ?>"></script>
-<script src="<?php echo app::js("jquery.scrollTo.min") ?>"></script>
-<script src="<?php echo app::autre("plugins/switchery/switchery.min.js") ?>"></script>
-<script src="<?php echo app::js("parsley.min") ?>"></script>
-<!-- Custom main Js -->
-<script src="<?php echo app::js("jquery.core") ?>"></script>
-<script src="<?php echo app::js("jquery.app") ?>"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
