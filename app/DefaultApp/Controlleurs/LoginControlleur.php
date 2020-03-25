@@ -106,6 +106,7 @@ class LoginControlleur extends Controlleur
             $email = trim(addslashes($_POST['email']));
             $lien_activivation = "http://".$_SERVER['HTTP_HOST']."/recover-".\app\DefaultApp\Models\Utilisateur::return_id_via_email($email);
             $message = \app\DefaultApp\Models\Utilisateur::email_confirme($lien_activivation);
+            $pseudo=" ";
             \systeme\Application\Application::envoyerEmail($email . "," . $pseudo, "Email de Recuperation", $message);
             $variable['erreur'] = "<div class=\"alert  alert-info\">
                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>
