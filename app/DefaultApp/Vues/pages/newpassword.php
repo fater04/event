@@ -12,7 +12,7 @@
                                 </div>
 
 
-                                <form action="#" method="post">
+                                <form action="" method="post">
 
                                     <div class="form-group mb-3">
                                         <label for="emailaddress">New Password</label>

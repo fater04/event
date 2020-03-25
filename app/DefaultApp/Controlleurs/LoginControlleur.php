@@ -105,7 +105,10 @@ class LoginControlleur extends Controlleur
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $email = trim(addslashes($_POST['email']));
             $lien_activivation = "http://".$_SERVER['HTTP_HOST']."/recover-".\app\DefaultApp\Models\Utilisateur::return_id_via_email($email);
-            $message = \app\DefaultApp\Models\Utilisateur::email_confirme($lien_activivation);
+            $other="Create new password by clicking this link below <br/>  <a href=\"" . $lien . "\" class=\"btn-primary\" itemprop=\"url\"
+            style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #3bafda; margin: 0; border-color: #3bafda; border-style: solid; border-width: 10px 20px;\">Confirm
+             email address</a>";
+            $message = \app\DefaultApp\Models\Utilisateur::email_other($other);
             $pseudo=" ";
             \systeme\Application\Application::envoyerEmail($email . "," . $pseudo, "Email de Recuperation", $message);
             $variable['erreur'] = "<div class=\"alert  alert-info\">
@@ -133,13 +136,13 @@ class LoginControlleur extends Controlleur
             $id = trim(addslashes($_POST['idd']));
             $pass1 = trim(addslashes($_POST['pass1']));
             $pass2 = trim(addslashes($_POST['pass2']));
-            if ($pass===$pass1) {
+            if ($pass1===$pass2) {
                 $r = \app\DefaultApp\Models\Utilisateur::changePassword($id, $pass2);
                 if ($r == "ok") {
                   
                     $variable['erreur'] = "<div class=\"alert  alert-success\">
                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>
-                   <b>Modification</b> effectuee avec Succes.
+                   <b>Modification</b> effectuee avec Succes.<script>setTimeout(\"location.href = 'login';\",2000);</script>
                 </div>";
                 } else {
                     $variable['erreur'] = "<div class=\"alert alert-warning alert-dismissable\">
