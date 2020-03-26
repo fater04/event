@@ -106,8 +106,7 @@ class LoginControlleur extends Controlleur
             $email = trim(addslashes($_POST['email']));
             $lien_activivation = "http://".$_SERVER['HTTP_HOST']."/recover-".\app\DefaultApp\Models\Utilisateur::return_id_via_email($email);
             $other="Create new password by clicking this link below <br/>  <a href=\"" . $lien . "\" class=\"btn-primary\" itemprop=\"url\"
-            style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #3bafda; margin: 0; border-color: #3bafda; border-style: solid; border-width: 10px 20px;\">Confirm
-             email address</a>";
+            style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #3bafda; margin: 0; border-color: #3bafda; border-style: solid; border-width: 10px 20px;\">Reset Password</a>";
             $message = \app\DefaultApp\Models\Utilisateur::email_other($other);
             $pseudo=" ";
             \systeme\Application\Application::envoyerEmail($email . "," . $pseudo, "Email de Recuperation", $message);
