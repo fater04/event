@@ -1,0 +1,10 @@
+# PH pagespeed start
+<IfModule pagespeed_module>
+ModPagespeed on
+ModPagespeedRewriteLevel PassThrough
+ModPagespeedEnableFilters add_head,fallback_rewrite_css_urls,flatten_css_imports,rewrite_style_attributes_with_url,extend_cache,collapse_whitespace,convert_meta_tags,remove_comments,combine_javascript,rewrite_javascript,inline_javascript,rewrite_css,combine_css,move_css_to_head,inline_css,inline_import_to_link,rewrite_images
+</IfModule>
+# PH pagespeed end 
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ public/app.php?url=$1 [QSA,l]

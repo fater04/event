@@ -24,11 +24,11 @@ App::get("/lock-:id", "Login.lock", "lock")->avec("id","['0-9']+");
 App::post("/lock-:id", "Login.lock", "lock")->avec("id","['0-9']+");
 App::get("/recover", "Login.recover", "recover");
 App::post("/recover", "Login.recover", "recover");
-App::get("/recover-:id", "Login.recoverPassword", "recover")->avec("id","['0-9']+");
-App::post("/recover-:id", "Login.recoverPassword", "recover")->avec("id","['0-9']+");
 App::get("/confirme-:id", "Login.confirme", "confirme")->avec("id","['0-9']+");
 App::get("/register", "Login.register", "register");
 App::post("/register", "Login.register", "register");
+App::get("/reset-:id", "Login.recoverPassword", "reset")->avec("id","['0-9']+");
+App::post("/reset-:id", "Login.recoverPassword", "reset")->avec("id","['0-9']+");
 
 //configuration
 App::get("/configuration", "Admin.setting", "configuration");

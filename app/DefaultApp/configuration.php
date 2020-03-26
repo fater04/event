@@ -1,9 +1,9 @@
 <?php
 $database=array(
     "serveur"=>"localhost",
-    "nom_base"=>"event",
-    "utilisateur"=>"root",
-    "motdepasse"=>"root"
+    "nom_base"=>"biostmwu_Event",
+    "utilisateur"=>"biostmwu_bios",
+    "motdepasse"=>"Haiti2019"
 );
 
 $from=array(
@@ -23,7 +23,7 @@ $configuration=array(
     "url"=>$_GET['url'],
     "database"=>$database,
     "configurationEmail"=>$configurationEmail,
-    "dossierProjet"=>"/event",
+    "dossierProjet"=>"",
     "nomApp"=>"DefaultApp"
 );
 
