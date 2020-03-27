@@ -9,6 +9,7 @@
 $setting = new \app\DefaultApp\Models\Setting();
 ?>
 
+
 <div class="row">
 
     <?php
@@ -111,7 +112,7 @@ $setting = new \app\DefaultApp\Models\Setting();
                     <td><?=substr($s1->getMessage(),0, 15)?></td>
                     <td>
                         <a href="configuration&edit=<?=$s1->getId()?>"><span class="fa fa-edit"></span></a>
-                        <a href="configuration&remove=<?=$s1->getId()?>"><span class="fa fa-remove"></span></a>
+                        <a href="configuration&remove=<?=$s1->getId()?>"><span class="fa fa-trash"></span></a>
                     </td>
                 </tr>
                 <?php } } ?>

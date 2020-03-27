@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card-box table-responsive">
-            <h4 class="m-t-0 header-title">liste des utilisateurs</h4>
+            <h4 class="m-t-0 header-title">liste des registants</h4>
             <p class="text-muted font-14 m-b-30">&nbsp;</p>
 
             <table id="datatable" class="table table-bordered">

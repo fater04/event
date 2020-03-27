@@ -11,35 +11,6 @@
 
 <div class="row">
 
-<!--    <div class="col-lg-6">-->
-<!--        <div class="portlet"><!-- /primary heading -->
-<!--            <div class="portlet-heading">-->
-<!--                <h3 class="portlet-title text-dark">-->
-<!--                    Statistique-->
-<!--                </h3>-->
-<!--                <div class="clearfix"></div>-->
-<!--            </div>-->
-<!--            <div id="portlet2" class="panel-collapse collapse show">-->
-<!--                <div class="portlet-body">-->
-<!--                    <canvas id="doughnut" height="300"></canvas>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div> <div class="col-lg-6">-->
-<!--        <div class="portlet"><!-- /primary heading -->
-<!--            <div class="portlet-heading">-->
-<!--                <h3 class="portlet-title text-dark">-->
-<!--                    Statistique-->
-<!--                </h3>-->
-<!--                <div class="clearfix"></div>-->
-<!--            </div>-->
-<!--            <div id="portlet2" class="panel-collapse collapse show">-->
-<!--                <div class="portlet-body">-->
-<!--                    <canvas id="doughnut" height="300"></canvas>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
                             <div class="col-lg-4">
                                 <div class="text-center card-box">
                                     <div class="pt-2 pb-2">

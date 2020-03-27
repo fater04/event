@@ -18,18 +18,6 @@ class EventControlleur extends Controlleur
     {
         $variable = array();
         $variable['titre'] = "Ajouter Event";
-        $variable['entete'] = "<div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <div class=\"page-title-box\">
-                            <h4 class=\"page-title\">Evennement</h4>
-                            <ol class=\"breadcrumb float-right\">
-                                <li class=\"breadcrumb-item\"><a href=\"#\">B-EVENT</a></li>
-                                <li class=\"breadcrumb-item active\">Events</li>
-                            </ol>
-                            <div class=\"clearfix\"></div>
-                        </div>
-                    </div>
-                </div>";
         if($_SESSION['role']=="admin"){
             $utilisateur = $this->getModel('Event');
             $variable['lisevent'] = $utilisateur->lister();
@@ -105,18 +93,6 @@ class EventControlleur extends Controlleur
     {
         $variable = array();
         $variable['titre'] = 'Event';
-        $variable['entete'] = "<div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <div class=\"page-title-box\">
-                            <h4 class=\"page-title\">Evennement</h4>
-                            <ol class=\"breadcrumb float-right\">
-                                <li class=\"breadcrumb-item\"><a href=\"#\">B-EVENT</a></li>
-                                <li class=\"breadcrumb-item active\">Events</li>
-                            </ol>
-                            <div class=\"clearfix\"></div>
-                        </div>
-                    </div>
-                </div>";
         $event1 = $this->getModel('Event');
 if($_SESSION['role']=="admin"){
     $variable['lisevent'] = $event1->lister();

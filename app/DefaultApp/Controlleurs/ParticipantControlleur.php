@@ -19,18 +19,6 @@ class ParticipantControlleur extends Controlleur
     {
         $variable = array();
         $variable['titre'] = "Ajouter Participant";
-        $variable['entete'] = "<div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <div class=\"page-title-box\">
-                            <h4 class=\"page-title\">Particpant</h4>
-                            <ol class=\"breadcrumb float-right\">
-                                <li class=\"breadcrumb-item\"><a href=\"#\">B-EVENT</a></li>
-                                <li class=\"breadcrumb-item active\">Participant</li>
-                            </ol>
-                            <div class=\"clearfix\"></div>
-                        </div>
-                    </div>
-                </div>";
         $variable['nom'] = 'Participant';
 //            $variable['erreur'] = "<div class=\"alert alert-danger alert-dismissable\">
 //                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>
@@ -52,18 +40,6 @@ class ParticipantControlleur extends Controlleur
     {
         $variable = array();
         $variable['titre'] = "Ajoute Participant";
-        $variable['entete'] = "<div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <div class=\"page-title-box\">
-                            <h4 class=\"page-title\">Particpant</h4>
-                            <ol class=\"breadcrumb float-right\">
-                                <li class=\"breadcrumb-item\"><a href=\"#\">B-EVENT</a></li>
-                                <li class=\"breadcrumb-item active\">Participant</li>
-                            </ol>
-                            <div class=\"clearfix\"></div>
-                        </div>
-                    </div>
-                </div>";
         $variable['nom'] = 'Participant';
         $variable['id'] = $id;
         if (\app\DefaultApp\Models\Setting::checkConfig($_SESSION['utilisateur']) == '0' && $_SESSION['role'] != 'registrant') {
@@ -79,18 +55,6 @@ class ParticipantControlleur extends Controlleur
     {
         $variable = array();
         $variable['titre'] = "Lister Utilisateur";
-        $variable['entete'] = "<div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <div class=\"page-title-box\">
-                            <h4 class=\"page-title\">Participant</h4>
-                            <ol class=\"breadcrumb float-right\">
-                                <li class=\"breadcrumb-item\"><a href=\"#\">B-EVENT</a></li>
-                                <li class=\"breadcrumb-item active\">Participant</li>
-                            </ol>
-                            <div class=\"clearfix\"></div>
-                        </div>
-                    </div>
-                </div>";
         if($_SESSION['role']=='admin'){
             $event1 = $this->getModel('Event');
             $utilisateur = $this->getModel('Participant');
@@ -149,18 +113,6 @@ class ParticipantControlleur extends Controlleur
     {
         $variable = array();
         $variable['titre'] = "Ajouter registrant";
-        $variable['entete'] = "<div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <div class=\"page-title-box\">
-                            <h4 class=\"page-title\">Registrant</h4>
-                            <ol class=\"breadcrumb float-right\">
-                                <li class=\"breadcrumb-item\"><a href=\"#\">B-EVENT</a></li>
-                                <li class=\"breadcrumb-item active\">Registrant</li>
-                            </ol>
-                            <div class=\"clearfix\"></div>
-                        </div>
-                    </div>
-                </div>";
         $variable['nom'] = 'Registrant';
         if($_SESSION['role']=="admin"){
             $utilisateur = $this->getModel('Event');
@@ -217,18 +169,6 @@ class ParticipantControlleur extends Controlleur
         $variable['id'] = $id;
         $utilisateur = $this->getModel('Event');
         $variable['lisevent'] = $utilisateur->lister($_SESSION['utilisateur']);
-        $variable['entete'] = "<div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <div class=\"page-title-box\">
-                            <h4 class=\"page-title\">Registrant</h4>
-                            <ol class=\"breadcrumb float-right\">
-                                <li class=\"breadcrumb-item\"><a href=\"#\">B-EVENT</a></li>
-                                <li class=\"breadcrumb-item active\">Registrant</li>
-                            </ol>
-                            <div class=\"clearfix\"></div>
-                        </div>
-                    </div>
-                </div>";
         $variable['nom'] = 'Registrant';
         return $this->render("participant/edit_registrant", $variable);
     }
@@ -237,18 +177,6 @@ class ParticipantControlleur extends Controlleur
     {
         $variable = array();
         $variable['titre'] = "Liste des registrant";
-        $variable['entete'] = "<div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <div class=\"page-title-box\">
-                            <h4 class=\"page-title\">Registrant</h4>
-                            <ol class=\"breadcrumb float-right\">
-                                <li class=\"breadcrumb-item\"><a href=\"#\">B-EVENT</a></li>
-                                <li class=\"breadcrumb-item active\">Registrant</li>
-                            </ol>
-                            <div class=\"clearfix\"></div>
-                        </div>
-                    </div>
-                </div>";
         if ($_SERVER['REQUEST_METHOD'] == "GET") {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];

@@ -8,6 +8,8 @@
 $event1 = new \app\DefaultApp\Models\Event();
 ?>
 
+
+                    <!-- end page title -->
 <div class="row">
     <?php
     if(isset($_GET['edit'])){ $s = $event1->rechercher($_GET['edit']) ?>

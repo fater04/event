@@ -8,7 +8,19 @@
 $user11 = new \app\DefaultApp\Models\Utilisateur();
 $u111 = $user11->rechercher($id);
 ?>
-
+<div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">B-EVENT</a></li>
+                                        <li class="breadcrumb-item active">Utilisateur</li>
+                                    </ol>
+                                </div>
+                                <h4 class="page-title">Utilisateur</h4>
+                            </div>
+                        </div>
+                    </div>
 <div class="row">
     <div class="col-xl-3 col-lg-4">
         <div class="text-center card-box">

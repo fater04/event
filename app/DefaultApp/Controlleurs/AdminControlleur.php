@@ -23,18 +23,6 @@ class AdminControlleur extends Controlleur
     {
         $variable = array();
         $variable['titre'] = "HOME";
-        $variable['entete'] = "<div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <div class=\"page-title-box\">
-                            <h4 class=\"page-title\">Welcome !</h4>
-                            <ol class=\"breadcrumb float-right\">
-                                <li class=\"breadcrumb-item\"><a href=\"#\">B-EVENT</a></li>
-                                <li class=\"breadcrumb-item active\">Dashboard</li>
-                            </ol>
-                            <div class=\"clearfix\"></div>
-                        </div>
-                    </div>
-                </div>";
         $uti = $this->getModel('Event');
         $variable['listerE'] = $uti->lister();
         return $this->render("admin/home", $variable);
@@ -45,18 +33,6 @@ class AdminControlleur extends Controlleur
     {
         $variable = array();
         $variable['titre'] = "Configuration";
-        $variable['entete'] = "<div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <div class=\"page-title-box\">
-                            <h4 class=\"page-title\">Configuration</h4>
-                            <ol class=\"breadcrumb float-right\">
-                                <li class=\"breadcrumb-item\"><a href=\"#\">B-EVENT</a></li>
-                                <li class=\"breadcrumb-item active\">Setting</li>
-                            </ol>
-                            <div class=\"clearfix\"></div>
-                        </div>
-                    </div>
-                </div>";
         $variable['id'] = $_SESSION['utilisateur'];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $id_user = $_SESSION['utilisateur'];

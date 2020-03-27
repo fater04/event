@@ -29,166 +29,215 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 
     }
 }
-
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>B-EVENT ~ <?php if (isset($titre)) echo $titre ;?>  </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="<?php echo app::autre("plugins/bootstrap-datepicker/bootstrap-datepicker.min.css") ?>" rel="stylesheet">
-    <link href="<?php echo app::autre("plugins/bootstrap-datepicker/daterangepicker.css") ?>" rel="stylesheet">
-    <link href="<?php echo app::autre("plugins/fullcalendar/fullcalendar.min.css") ?>" rel="stylesheet">
-    <link href="<?php echo app::autre("plugins/custombox/custombox.min.css") ?>" rel="stylesheet">
-    <link href="<?php echo app::autre("plugins/datatables/dataTables.bootstrap4.min.css") ?>" rel="stylesheet">
-    <link href="<?php echo app::autre("plugins/datatables/buttons.bootstrap4.min.css") ?>" rel="stylesheet">
-    <link href="<?php echo app::autre("plugins/switchery/switchery.min.css") ?>" rel="stylesheet">
-    <link href="<?php echo app::autre("plugins/jquery-circliful/css/jquery.circliful.css") ?>" rel="stylesheet">
-    <link href="<?php echo app::css("bootstrap.min") ?>" rel="stylesheet">
-    <link href="<?php echo app::css("icons") ?>" rel="stylesheet">
-    <link href="<?php echo app::css("style") ?>" rel="stylesheet">
-    <script src="<?php echo app::js("modernizr.min") ?>"></script>
+    <meta charset="utf-8" />
+    <title>B-EVENT - <?php if (isset($titre)) echo $titre ;?> </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <!-- third party css -->
+        <link href="<?= app::autre('assets/libs/datatables/dataTables.bootstrap4.css')?>"  rel="stylesheet" type="text/css" />
+        <link href="<?= app::autre('assets/libs/datatables/responsive.bootstrap4.css')?>"  rel="stylesheet" type="text/css" />
+        <link href="<?= app::autre('assets/libs/datatables/buttons.bootstrap4.css')?>"  rel="stylesheet" type="text/css" />
+        <link href="<?= app::autre('assets/libs/datatables/select.bootstrap4.css')?>"  rel="stylesheet" type="text/css" />
+        <link href="<?= app::autre('assets/libs/fullcalendar/fullcalendar.min.css')?>" rel="stylesheet" type="text/css" />
+        <!-- third party css end -->
+
+    <link href="<?= app::autre('assets/css/bootstrap.min.css')?>" rel="stylesheet" type="text/css" />
+    <link href="<?= app::autre('assets/css/icons.min.css')?>" rel="stylesheet" type="text/css" />
+    <link href="<?= app::autre('assets/css/app.min.css')?>" rel="stylesheet" type="text/css" />
+
+
     <style>
-
-        #preloader {
-
-            position: fixed;
-
-            z-index: 9999;
-
-            background: url('public/images/load.gif') 50% 50% no-repeat;
-
-            top: 0px;
-
-            left: 0px;
-
-            height: 100%;
-
-            width: 100%;
-
-            cursor: wait;
-        }
-
+    #preloader {
+        position: fixed;
+        z-index: 9999;
+        background: url('public/images/load.gif') 50% 50% no-repeat;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        cursor: wait;
+    }
     </style>
 </head>
+<!-- collapsed side-bar ---- class="enlarged" data-keep-enlarged="true"> -->
+<!-- color topbar------class="topbar-dark topbar-light" -->
+<!-- color sidebar--------- class="left-side-menu-dark left-side-menu-light"  -->
+<!-- box layout ----------class="enlarged boxed-layout" data-keep-enlarged="true" -->
+<!-- -- small sidebar -------------class="left-side-menu-sm"---------- -->
 
 
-<body class="fixed-left">
-<div id="preloader"></div>
-<!-- Begin page -->
-<div id="wrapper">
+<body class=" ">
+    <div id="preloader"></div>
+    <!-- Begin page -->
+    <div id="wrapper">
+        <!-- Topbar -->
+        <div class="navbar-custom">
+            <ul class="list-unstyled topnav-menu float-right mb-0">
 
-    <!-- Top Bar Start -->
-    <div class="topbar">
-
-        <!-- LOGO -->
-        <div class="topbar-left">
-            <div class="text-center">
-                <a href="#" class="logo"><i class="mdi mdi-calendar-multiple-check"></i><span>&nbsp;B-EVENT</span></a>
-            </div>
-        </div>
-
-        <!-- Button mobile view to collapse sidebar menu -->
-        <nav class="navbar-custom">
-
-            <ul class="list-inline float-right mb-0">
-
-                <li class="list-inline-item notification-list hide-phone">
-                    <a class="nav-link waves-light waves-effect" href="#" id="btn-fullscreen">
-                        <i class="mdi mdi-crop-free noti-icon"></i>
+                <!-- <li class="dropdown notification-list">
+                    <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown" href="#"
+                        role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="fe-bell noti-icon"></i>
+                        <span class="badge badge-danger rounded-circle noti-icon-badge">4</span>
                     </a>
-                </li>
-                <li class="list-inline-item dropdown notification-list">
-                    <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown"
-                       href="#" role="button"
-                       aria-haspopup="false" aria-expanded="false">
-                        <?php if ($u0->getPhoto() != "n/a") { ?>
-                            <img src="<?= $u0->getPhoto() ?>" alt="user" class="rounded-circle">
-                        <?php } else { ?>
-                            <img src="public/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
-                        <?php } ?>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
-                        <!-- item-->
+                    <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+                      
                         <div class="dropdown-item noti-title">
-                            <h5 class="text-overflow">
-                                <small>Welcome ! <?= $u0->getPseudo() ?></small>
+                            <h5 class="m-0">
+                                <span class="float-right">
+                                    <a href="#" class="text-dark">
+                                        <small>Clear All</small>
+                                    </a>
+                                </span>Notification
                             </h5>
+                        </div>
+
+                        <div class="slimscroll noti-scroll">
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-secondary">
+                                    <i class="mdi mdi-heart"></i>
+                                </div>
+                                <p class="notify-details">Carlos Crouch liked
+                                    <b>Admin</b>
+                                    <small class="text-muted">13 days ago</small>
+                                </p>
+                            </a>
+                        </div>
+
+                        <a href="javascript:void(0);"
+                            class="dropdown-item text-center text-primary notify-item notify-all">
+                            View all
+                            <i class="fi-arrow-right"></i>
+                        </a>
+
+                    </div>
+                </li> -->
+
+                <li class="dropdown notification-list">
+                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
+                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <?php if ($u0->getPhoto() != "n/a") { ?>
+                        <img src="<?= $u0->getPhoto() ?>" alt="user-image" class="rounded-circle">
+                        <?php } else { ?>
+                        <img src="public/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                        <?php } ?>
+                        <span class="pro-user-name ml-1">
+                            <?=$u0->getPseudo() ?> <i class="mdi mdi-chevron-down"></i>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                        <!-- item-->
+                        <div class="dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome !</h6>
                         </div>
 
                         <!-- item-->
                         <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("profile") ?>"
-                           class="dropdown-item notify-item">
-                            <i class="mdi mdi-account"></i> <span>Profile</span>
-                        </a>
-
-
-                        <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("change-password") ?>"
-                           class="dropdown-item notify-item">
-                            <i class="fa fa-edit"></i> <span> Password</span>
+                            class="dropdown-item notify-item">
+                            <i class="remixicon-account-circle-line"></i>
+                            <span>Profile</span>
                         </a>
 
                         <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="remixicon-settings-3-line"></i>
+                            <span>Settings</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+                        <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("change-password") ?>"
+                            class="dropdown-item notify-item">
+                            <i class="fa fa-edit"></i> <span> Password</span>
+                        </a>
+                        <!-- item-->
                         <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("logout") ?>"
-                           class="dropdown-item notify-item">
-                            <i class="mdi mdi-logout"></i> <span>Logout</span>
+                            class="dropdown-item notify-item">
+                            <i class="remixicon-logout-box-line"></i>
+                            <span>Logout</span>
                         </a>
 
                     </div>
                 </li>
 
+
+
+
+
             </ul>
 
-            <ul class="list-inline menu-left mb-0">
-                <li class="float-left">
-                    <button class="button-menu-mobile open-left waves-light waves-effect">
-                        <i class="mdi mdi-menu"></i>
+            <!-- LOGO -->
+            <div class="logo-box">
+                <a href="index.html" class="logo text-center">
+                    <span class="logo-lg">
+                        <strong style="font-size:28px"><i class="mdi mdi-calendar-multiple-check"></i>
+                            <span>B-EVENT</span> </strong>
+                    </span>
+                    <span class="logo-sm">
+                        <strong style="font-size:28px"><i class="mdi mdi-calendar-multiple-check"></i></strong>
+                    </span>
+                </a>
+            </div>
+
+            <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                <li>
+                    <button class="button-menu-mobile waves-effect waves-light">
+                        <i class="fe-menu"></i>
                     </button>
                 </li>
+
             </ul>
+        </div>
+        <!-- end Topbar -->
 
-        </nav>
+        <!-- ========== Left Sidebar Start ========== -->
+        <?php if ($u0->getRole() != 'registrant') { ?>
+        <div class="left-side-menu">
 
-    </div>
-    <!-- Top Bar End -->
+            <div class="slimscroll-menu">
 
-
-    <!-- ========== Left Sidebar Start ========== -->
-    <?php if ($u0->getRole() != 'registrant') { ?>
-        <div class="left side-menu">
-            <div class="sidebar-inner slimscrollleft">
-                <!--- Divider -->
+                <!--- Sidemenu -->
                 <div id="sidebar-menu">
-                    <ul>
+
+                    <ul class="metismenu" id="side-menu">
+
+
                         <li>
-                            <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("Home") ?>"
-                               class="waves-effect waves-primary">
+                            <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("Home") ?>" class="waves-effect">
                                 <i class="ti-home"></i><span> Dashboard </span>
                             </a>
                         </li>
 
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                        <li>
+                            <a href="javascript: void(0);" class="waves-effect">
                                 <i class="ti-user"></i> <span>Participant</span>
                                 <span class="menu-arrow"></span>
                             </a>
-                            <ul class="list-unstyled">
-                                <li><a href="<?= \app\DefaultApp\DefaultApp::genererUrl("ajouter-participant") ?>">Ajouter</a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a
+                                        href="<?= \app\DefaultApp\DefaultApp::genererUrl("ajouter-participant") ?>">Ajouter</a>
                                 </li>
                                 <li>
-                                    <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("all-participant") ?>">Lister</a>
+                                    <a
+                                        href="<?= \app\DefaultApp\DefaultApp::genererUrl("all-participant") ?>">Lister</a>
                                 </li>
+
                             </ul>
                         </li>
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                        <li>
+                            <a href="javascript: void(0);" class="waves-effect">
                                 <i class="ti-user"></i> <span>Registrant</span>
                                 <span class="menu-arrow"></span>
                             </a>
-                            <ul class="list-unstyled">
+                            <ul class="nav-second-level" aria-expanded="false">
                                 <li>
-                                    <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("add-registrant") ?>">Ajouter</a>
+                                    <a
+                                        href="<?= \app\DefaultApp\DefaultApp::genererUrl("add-registrant") ?>">Ajouter</a>
                                 </li>
                                 <li><a href="<?= \app\DefaultApp\DefaultApp::genererUrl("all-registrant") ?>">Lister</a>
                                 </li>
@@ -196,158 +245,207 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                         </li>
                         <li>
                             <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("configuration") ?>"
-                               class="waves-effect waves-primary">
+                                class="waves-effect">
                                 <i class="ti-settings"></i><span> Configuration </span>
                             </a>
                         </li>
                         <?php if ($check != '0' || $u0->getRole() == "admin") { ?>
-                            <li>
-                                <a href="javascript:void(0);" data-toggle="modal" data-target="#con-close-modal"
-                                   class="waves-effect waves-primary">
-                                    <i class="fa fa-envelope"></i><span> Send Globale</span>
-                                </a>
-                            </li>
+                        <li>
+                            <a href="javascript: void(0);" class="waves-effect" data-toggle="modal"
+                                data-target="#con-close-modal">
+                                <i class="fa fa-envelope"></i><span> Send Globale</span>
+                            </a>
+                        </li>
                         <?php } ?>
                         <li>
-                            <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("event") ?>"
-                               class="waves-effect waves-primary">
+                            <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("event") ?>" class="waves-effect ">
                                 <i class="ti-calendar"></i><span> Evennement </span>
                             </a>
                         </li>
                         <?php if ($u0->getRole() == "admin") { ?>
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                    <i class="ti-user"></i> <span>Utilisateur</span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="list-unstyled">
-                                    <li><a href="<?= \app\DefaultApp\DefaultApp::genererUrl("add-user") ?>">Ajouter</a>
-                                    </li>
-                                    <li><a href="<?= \app\DefaultApp\DefaultApp::genererUrl("all-user") ?>">Lister</a>
-                                    </li>
-                                </ul>
-                            </li>
+                        <li>
+                            <a href="javascript: void(0);" class="waves-effect">
+                                <i class="ti-user"></i> <span>Utilisateur</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="<?= \app\DefaultApp\DefaultApp::genererUrl("add-user") ?>">Ajouter</a>
+                                </li>
+                                <li><a href="<?= \app\DefaultApp\DefaultApp::genererUrl("all-user") ?>">Lister</a>
+                                </li>
+
+                            </ul>
+                        </li>
                         <?php } ?>
+
+
+
+
+                        <!-- <li>
+                            <a href="javascript: void(0);" class="waves-effect">
+                                <i class="remixicon-mail-open-line"></i>
+                                <span> SMS </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li>
+                                    <a href="#">add</a>
+                                </li>
+                                <li>
+                                    <a href="#">Read sms</a>
+                                </li>
+                                <li>
+                                    <a href="#">Compose compose</a>
+                                </li>
+                            </ul>
+                        </li> -->
 
 
                     </ul>
 
-
-                    <div class="clearfix"></div>
                 </div>
+                <!-- End Sidebar -->
+
                 <div class="clearfix"></div>
+
             </div>
+
         </div>
-    <?php } ?>
-    <!-- Left Sidebar End -->
+        <?php   } ?>
+        <!-- Left Sidebar End -->
 
-    <div class="content-page">
-        <!-- Start content -->
-        <div class="content">
-            <div class="container-fluid">
+        <!-- Start Page Content here -->
+        <div class="content-page">
+            <div class="content">
 
-                <!-- Page-Title -->
-
-                <?php if (isset($entete)) {
-                    echo $entete;
-                } ?>
-                <div class="offset-md-4 col-md-4" id="erreur"><?php if (isset($erreur)) {
-                        echo $erreur;
-                    } ?></div>
-                <?php if (isset($contenue)) {
-                    echo $contenue;
-                } ?>
-            </div>
-        </div>
-        <footer class="footer">
-            &copy<?php echo date("Y"); ?> <i class="mdi mdi-calendar-multiple-check"></i> B-EVENT<span
-                    class="hide-phone"> ~ powered by <a href="https://www.bioshaiti.net"
-                                                        target="_blank">BIOS</a></span>
-        </footer>
-
-    </div>
-
-    <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Envoyer Message</h4>
-                </div>
-                <form method="post" id="globale_send">
-                    <div class="modal-body">
-                        <div class="row">
-
-                            <div class="col-md-12">
-                                <label for="field-7" class="control-label">Evennement</label>
-                                <select name="event" class="form-control" required>
-                                    <?php
-                                    $event0 = new \app\DefaultApp\Models\Event;
-                                    $e0 = $event0->lister();
-                                    foreach ($e0 as $e00) { ?>
-                                        ?>
-                                        <option value="<?= $e00->getId() ?>"> <?= $e00->getTitre() ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group no-margin">
-                                    <label for="field-7" class="control-label">Message</label>
-                                    <textarea class="form-control" name="message" rows="5"
-                                              placeholder="Write something..." required></textarea>
+                <!-- Start Content-->
+                <div class="container-fluid">
+                <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">B-EVENT</a></li>
+                                        <li class="breadcrumb-item active"><?php if (isset($titre)) echo $titre ;?></li>
+                                    </ol>
                                 </div>
+                                <h4 class="page-title"><?php if (isset($titre)) echo $titre ;?></h4>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="globale">
-                        <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info waves-effect waves-light">Send <span
-                                    class="fa fa-send"></span></button>
-                    </div>
-                </form>
+
+
+
+
+
+                    <div class="offset-md-4 col-md-4" id="erreur"><?php if (isset($erreur)) {
+                        echo $erreur;
+                    } ?></div>
+                    <?php if (isset($contenue)) {
+                    echo $contenue;
+                } ?>
+                </div>
+
             </div>
+            <!-- Footer Start -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            &copy<?= date("Y")?> <span class="mdi mdi-calendar-multiple-check"></span> B-EVENT <span>
+                                powered by <a href="https://www.bioshaiti.com">BIOS</a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-md-right  d-none d-sm-block">
+                                Version 1.1.0
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- end Footer -->
+
         </div>
+        <!-- End Page Content here -->
+
+        <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Content is Responsive</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <form method="post" id="globale_send">
+                        <div class="modal-body p-4">
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <label for="field-7" class="control-label">Evennement</label>
+                                    <select name="event" class="form-control" required>
+                                        <?php
+                                             $event0 = new \app\DefaultApp\Models\Event;
+                                            $e0 = $event0->lister();
+                                         foreach ($e0 as $e00) { ?>
+                                         <option value="<?= $e00->getId() ?>"> <?= $e00->getTitre() ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group no-margin">
+                                        <label for="field-7" class="control-label">Message</label>
+                                        <textarea class="form-control" name="message" rows="5"
+                                            placeholder="Write something..." required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="globale">
+                            <button type="button" class="btn btn-secondary waves-effect"
+                                data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-info waves-effect waves-light">Send <span
+                                    class="fa fa-send"></span></button>
+                        </div>
+                   </form>
+                </div>
+            </div>
+        </div><!-- /.modal -->
+
+
     </div>
 
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+    <script src="<?= app::autre('assets/js/vendor.min.js')?>"></script>
+    <script src="<?= app::autre('assets/libs/jquery-knob/jquery.knob.min.js')?>"></script>
+    <script src="<?= app::autre('assets/libs/peity/jquery.peity.min.js')?>"></script>
+    <script src="<?= app::autre('assets/libs/jquery-sparkline/jquery.sparkline.min.js')?>"></script>
+    <script src="<?= app::autre('assets/js/pages/dashboard-1.init.js')?>"></script>
+    <script src="<?= app::autre('assets/js/app.min.js')?>"></script>
 
-</div>
+  
 
-<script>
-    var resizefunc = [];
-</script>
-<script src="<?php echo app::js("jquery.min") ?>"></script>
-<script src="<?php echo app::js("popper.min") ?>"></script>
-<script src="<?php echo app::js("bootstrap.min") ?>"></script>
-<script src="<?php echo app::js("detect") ?>"></script>
-<script src="<?php echo app::js("fastclick") ?>"></script>
-<script src="<?php echo app::js("jquery.slimscroll") ?>"></script>
-<script src="<?php echo app::js("jquery.blockUI") ?>"></script>
-<script src="<?php echo app::js("waves") ?>"></script>
-<script src="<?php echo app::js("wow.min") ?>"></script>
-<script src="<?php echo app::js("jquery.nicescroll") ?>"></script>
-<script src="<?php echo app::js("jquery.scrollTo.min") ?>"></script>
-<script src="<?php echo app::autre("plugins/switchery/switchery.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/jquery.waypoints.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/jquery.counterup.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/jquery-circliful/js/jquery.circliful.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/jquery-ui/jquery-ui.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/jquery.sparkline.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/skycons.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/jquery.dataTables.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/dataTables.bootstrap4.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/dataTables.buttons.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/buttons.bootstrap4.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/jszip.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/pdfmake.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/vfs_fonts.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/buttons.html5.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/buttons.print.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/dataTables.keyTable.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/dataTables.responsive.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/responsive.bootstrap4.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/datatables/dataTables.select.min.js") ?>"></script>
+<!--------------------table data ------------>
+ <script src="<?php echo app::autre("assets/libs/datatables/jquery.dataTables.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/dataTables.bootstrap4.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/dataTables.buttons.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/buttons.bootstrap4.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/jszip.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/pdfmake.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/vfs_fonts.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/buttons.html5.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/buttons.print.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/dataTables.keyTable.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/dataTables.responsive.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/responsive.bootstrap4.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/libs/datatables/dataTables.select.min.js") ?>"></script>
+<!-- ------------calendar-------------- -->
+<script src="<?php echo app::autre("plugins/moment.js") ?>"></script>
+<script src="<?php echo app::autre("plugins/fullcalendar/fullcalendar.min.js") ?>"></script>
+<script src="<?php echo app::js("jquery.fullcalendar") ?>"></script>
+<script src="<?php echo app::autre("plugins/bootstrap-inputmask/bootstrap-inputmask.min.js") ?>"></script>
 <script src="<?php echo app::autre("plugins/moment.js") ?>"></script>
 <script src="<?php echo app::autre("plugins/fullcalendar/fullcalendar.min.js") ?>"></script>
 <script src="<?php echo app::js("jquery.fullcalendar") ?>"></script>
@@ -484,136 +582,8 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 
     </script>
 <?php } ?>
-<script src="<?php echo app::autre("plugins/custombox/custombox.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/custombox/legacy.min.js") ?>"></script>
-<script src="<?php echo app::js("parsley.min") ?>"></script>
-<script src="<?php echo app::autre("plugins/notifications/notify.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/notifications/notify-metro.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/chart.js/Chart.bundle.min.js") ?>"></script>
-<script type="text/javascript">
-
-    !function ($) {
-        "use strict";
-
-        var ChartJs = function () {
-        };
-
-        ChartJs.prototype.respChart = function (selector, type, data, options) {
-            //default config
-            Chart.defaults.global.defaultFontColor = "rgba(255,255,255,0.5)";
-            // get selector by context
-            var ctx = selector.get(0).getContext("2d");
-            // pointing parent container to make chart js inherit its width
-            var container = $(selector).parent();
-
-            // enable resizing matter
-            $(window).resize(generateChart);
-
-            // this function produce the responsive Chart JS
-            function generateChart() {
-                // make chart width fit with its container
-                var ww = selector.attr('width', $(container).width());
-                switch (type) {
-                    case 'Line':
-                        new Chart(ctx, {type: 'line', data: data, options: options});
-                        break;
-                    case 'Doughnut':
-                        new Chart(ctx, {type: 'doughnut', data: data, options: options});
-                        break;
-                    case 'Pie':
-                        new Chart(ctx, {type: 'pie', data: data, options: options});
-                        break;
-                    case 'Bar':
-                        new Chart(ctx, {type: 'bar', data: data, options: options});
-                        break;
-                    case 'Radar':
-                        new Chart(ctx, {type: 'radar', data: data, options: options});
-                        break;
-                    case 'PolarArea':
-                        new Chart(ctx, {data: data, type: 'polarArea', options: options});
-                        break;
-                }
-                // Initiate new chart or Redraw
-
-            };
-            // run function - render chart at first load
-            generateChart();
-        },
-            //init
-            ChartJs.prototype.init = function () {
-                //donut chart
-                var donutChart = {
-                    labels: [
-                        <?php if (isset($listerE)) { foreach ($listerE as $ev1) {?>
-                        "<?= $ev1->getTitre() ?>",
-                        <?php }  } ?>
-
-                    ],
-                    datasets: [
-                        {
-                            data: [<?php if (isset($listerE)) { foreach ($listerE as $ev1) {?>
-                                <?=\app\DefaultApp\Models\Participant::countP($ev1->getId())?>,
-                                <?php }  } ?>],
-                            backgroundColor: [
-                                "#3bafda",
-                                "#26c6da",
-                                "#00b19d"
-                            ],
-                            hoverBackgroundColor: [
-                                "#3bafda",
-                                "#26c6da",
-                                "#00b19d"
-                            ],
-                            hoverBorderColor: "#fff"
-                        }]
-                };
-                this.respChart($("#doughnut"), 'Doughnut', donutChart);
-
-
-            },
-            $.ChartJs = new ChartJs, $.ChartJs.Constructor = ChartJs
-
-    }(window.jQuery),
-
-//initializing
-        function ($) {
-            "use strict";
-            $.ChartJs.init()
-        }(window.jQuery);
-</script>
-
+<!----custom----->
 <script src="<?php echo app::js("fater") ?>"></script>
-<script src="<?php echo app::js("jquery.dashboard") ?>"></script>
-<script src="<?php echo app::js("jquery.core") ?>"></script>
-<script src="<?php echo app::js("jquery.app") ?>"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function ($) {
-        $('.counter').counterUp({
-            delay: 100,
-            time: 1200
-        });
-        $('.circliful-chart').circliful();
-
-        // BEGIN SVG WEATHER ICON
-        if (typeof Skycons !== 'undefined') {
-            var icons = new Skycons(
-                {"color": "#3bafda"},
-                {"resizeClear": true}
-                ),
-                list = [
-                    "clear-day", "clear-night", "partly-cloudy-day",
-                    "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-                    "fog"
-                ],
-                i;
-
-            for (i = list.length; i--;)
-                icons.set(list[i], list[i]);
-            icons.play();
-        }
-        ;
-
-</script>
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -646,4 +616,5 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 </script>
 
 </body>
+
 </html>

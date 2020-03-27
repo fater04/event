@@ -1,10 +1,15 @@
 <?php
 $database=array(
     "serveur"=>"localhost",
-    "nom_base"=>"biostmwu_Event",
-    "utilisateur"=>"biostmwu_bios",
-    "motdepasse"=>"Haiti2019"
+    "nom_base"=>"event",
+    "utilisateur"=>"root",
+    "motdepasse"=>"root"
 );
+
+ // "serveur"=>"localhost",
+    // "nom_base"=>"biostmwu_Event",
+    // "utilisateur"=>"biostmwu_bios",
+    // "motdepasse"=>"Haiti2019"
 
 $from=array(
 "email"=>"info@event.bioshaiti.net",
@@ -23,9 +28,11 @@ $configuration=array(
     "url"=>$_GET['url'],
     "database"=>$database,
     "configurationEmail"=>$configurationEmail,
-    "dossierProjet"=>"",
+    "dossierProjet"=>"/event",
+    // "dossierProjet"=>"",
     "nomApp"=>"DefaultApp"
 );
+
 
 
 // \systeme\Application\Application::Backup() ;
