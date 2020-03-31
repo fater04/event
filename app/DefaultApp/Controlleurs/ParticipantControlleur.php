@@ -17,6 +17,7 @@ class ParticipantControlleur extends Controlleur
 
     public function ajouter()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Add participant',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = "Ajouter Participant";
         $variable['nom'] = 'Participant';
@@ -38,8 +39,9 @@ class ParticipantControlleur extends Controlleur
 
     public function add($id)
     {
+        // \app\DefaultApp\Models\Compteur::enregistre('Add Participantid',$_SESSION['utilisateur']);
         $variable = array();
-        $variable['titre'] = "Ajoute Participant";
+        $variable['titre'] = "Ajouter Participant";
         $variable['nom'] = 'Participant';
         $variable['id'] = $id;
         if (\app\DefaultApp\Models\Setting::checkConfig($_SESSION['utilisateur']) == '0' && $_SESSION['role'] != 'registrant') {
@@ -53,6 +55,7 @@ class ParticipantControlleur extends Controlleur
 
     public function lister()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Lister participant',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = "Lister Utilisateur";
         if($_SESSION['role']=='admin'){
@@ -111,6 +114,7 @@ class ParticipantControlleur extends Controlleur
     //personne pour enregistrer
     public function add_registrant()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Add Registrant',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = "Ajouter registrant";
         $variable['nom'] = 'Registrant';
@@ -164,6 +168,7 @@ class ParticipantControlleur extends Controlleur
 
     public function edit_registrant($id)
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Edit Registrant',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = "Modifier registrant";
         $variable['id'] = $id;
@@ -175,6 +180,7 @@ class ParticipantControlleur extends Controlleur
 
     public function all_registrant()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Lister registrant',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = "Liste des registrant";
         if ($_SERVER['REQUEST_METHOD'] == "GET") {

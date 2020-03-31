@@ -486,4 +486,32 @@ if($this->ExistPhone($this->telephone)){
         return $data['nb'];
 
     }
+    public static function countParticipant($id="")
+    {
+        $con=self::connection();
+        if($id=="") {
+            $req="select COUNT(*) as 'nb' from participant ";
+        }else{
+            $req="select COUNT(*) as 'nb' from participant  WHERE id_user='".$id."'";
+        }
+       
+        $rs = $con->query($req);
+        $data=$rs->fetch();
+        return $data['nb'];
+
+    }
+    public static function countSexe($sexe="",$id="")
+    {
+        $con=self::connection();
+        if($id=="") {
+            $req="select COUNT(*) as 'nb' from participant  WHERE sexe='".$sexe."'";
+        }else{
+            $req="select COUNT(*) as 'nb' from participant  WHERE sexe='".$sexe."' and id_user='".$id."'";
+        }
+       
+        $rs = $con->query($req);
+        $data=$rs->fetch();
+        return $data['nb'];
+
+    }
 }

@@ -15,10 +15,10 @@
             <h4 class="m-t-0 header-title">liste des utilisateurs</h4>
 
             <p class="text-muted font-10 m-b-30"><div>
-                <a href="all-user&role=admin" class="btn btn-outline-primary">Administrateur</a>
-                <a href="all-user&role=client" class="btn btn-outline-success">Client</a>
-                <a href="all-user&role=registrant" class="btn btn-outline-info">Registrant</a>
-                <a href="all-user&role=all" class="btn btn-outline-light waves-effect">Tous</a>
+                <a href="all-user&role=admin" class="btn btn-outline-info btn-md">Administrateur</a>
+                <a href="all-user&role=inviter" class="btn btn-outline-info btn-md">Client</a>
+                <a href="all-user&role=registrant" class="btn btn-outline-info btn-md">Registrant</a>
+                <a href="all-user&role=all" class="btn btn-outline-info btn-md">Tous</a>
             </div></p>
 
             <table id="datatable" class="table table-bordered">
@@ -87,7 +87,7 @@
                         <div class="btn-group dropdown">
                             <a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="edit-user/<?= $user->getId() ?>" ><i class="mdi mdi-pencil mr-2 text-muted font-18 vertical-middle"></i>Edit User</a>
+                                <a class="dropdown-item" href="edit-user-<?= $user->getId() ?>" ><i class="mdi mdi-pencil mr-2 text-muted font-18 vertical-middle"></i>Edit User</a>
                                 <a class="dropdown-item" href="all-user&id=<?= $user->getId() ?>"><i class="mdi mdi-delete mr-2 text-muted font-18 vertical-middle"></i>Remove</a>
                             </div>
                         </div>

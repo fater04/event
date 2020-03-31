@@ -7,7 +7,84 @@
  */
 ?>
 
+                        <div class="row">
+                        <div class="col-lg-6">
+                        <div class="card">
+                                    <div class="card-body">                                  
+                                        <h4 class="header-title" >Statistique </h4>                                       
+                                        <div class="mt-3" dir="ltr">
+                                            <div id="apex-pie-2" class="apex-charts"></div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end card-->
+                            </div>
 
+                            <div class="col-lg-6">
+                            <div class="col-12">
+                                 <div class="text-center mb-2">
+                                        <div class="row">
+                                            <div class="col-md-6 col-xl-6">
+                                                <div class="card-box border">
+                                                    <i class="fa fa-user-friends font-24"></i>
+                                                    <h3 class="text-success"><?php 
+                                                    if ($_SESSION['role'] == "admin") { 
+                                                      echo   \app\DefaultApp\Models\Participant::countParticipant();
+                                                    }else{
+                                                       echo  \app\DefaultApp\Models\Participant::countParticipant($_SESSION['utilisateur']);
+                                                    }
+                                                    ?></h3>
+                                                    <p class="text-uppercase mb-1 font-13 font-weight-medium">All Participants</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xl-6">
+                                                <div class="card-box border">
+                                                    <i class="fa fa-calendar font-24"></i>
+                                                    <h3 class="text-warning"><?php
+                                                    if ($_SESSION['role'] == "admin") { 
+                                                    echo  \app\DefaultApp\Models\Event::countEvent();
+                                                    }else{
+                                                      echo  \app\DefaultApp\Models\Event::countEvent($_SESSION['utilisateur']);
+                                                    }
+                                                    ?></h3>
+                                                    <p class="text-uppercase mb-1 font-13 font-weight-medium">All Events</p>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-xl-6">
+                                                <div class="card-box border">
+                                                    <i class="fa fa-male font-24"></i>
+                                                    <h3 class="text-success"><?php 
+                                                    if ($_SESSION['role'] == "admin") { 
+                                                      echo   \app\DefaultApp\Models\Participant::countSexe('Masculin');
+                                                    }else{
+                                                       echo  \app\DefaultApp\Models\Participant::countParticipant('Masculin',$_SESSION['utilisateur']);
+                                                    }
+                                                    ?></h3>
+                                                    <p class="text-uppercase mb-1 font-13 font-weight-medium">Garcons</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xl-6">
+                                                <div class="card-box border">
+                                                    <i class="fa fa-female font-24"></i>
+                                                    <h3 class="text-warning"><?php
+                                                    if ($_SESSION['role'] == "admin") { 
+                                                        echo   \app\DefaultApp\Models\Participant::countSexe('Feminin');
+                                                      }else{
+                                                         echo  \app\DefaultApp\Models\Participant::countParticipant('Feminin',$_SESSION['utilisateur']);
+                                                      }
+                                                    ?></h3>
+                                                    <p class="text-uppercase mb-1 font-13 font-weight-medium">Filles</p>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
 
 <div class="row">
 

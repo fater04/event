@@ -398,5 +398,19 @@ class Event extends Model
             return "no";
         }
     }
+    public static function countEvent($id="")
+    {
+        $con=self::connection();
+        if($id=="") {
+            $req="select COUNT(*) as 'nb' from event ";
+        }else{
+            $req="select COUNT(*) as 'nb' from event  WHERE id_user='".$id."'";
+        }
+       
+        $rs = $con->query($req);
+        $data=$rs->fetch();
+        return $data['nb'];
+
+    }
 
 }

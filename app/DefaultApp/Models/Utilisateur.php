@@ -506,4 +506,15 @@ static function return_user($id)
     $con = null;
     return $id;
 }
+public
+static function return_user_pseudo($id)
+{
+    $con = self::connection();
+    $req = "SELECT pseudo FROM utilisateur where id='" . $id . "'";
+    $rps = $con->query($req);
+    $data = $rps->fetch();
+    $id = $data['pseudo'];
+    $con = null;
+    return $id;
+}
 }

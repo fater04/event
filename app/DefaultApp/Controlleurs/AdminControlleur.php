@@ -21,16 +21,22 @@ class AdminControlleur extends Controlleur
 
     public function accueil()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('ACCUEIL',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = "HOME";
         $uti = $this->getModel('Event');
+        if ($_SESSION['role'] == "admin") { 
         $variable['listerE'] = $uti->lister();
+        }else{
+            $variable['listerE'] = $uti->lister($_SESSION['utilisateur'] );
+        }
         return $this->render("admin/home", $variable);
 
     }
 
     public function setting()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('SETTING',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = "Configuration";
         $variable['id'] = $_SESSION['utilisateur'];
@@ -92,9 +98,19 @@ class AdminControlleur extends Controlleur
             $variable['listesetting'] = $utilisateur->lister($_SESSION['utilisateur']);
         }
 
+        
         return $this->render("admin/setting", $variable);
 
     }
 
+    public function log()
+    {
+        $variable = array();
+       
+        $uti = $this->getModel('Compteur');
+        $variable['loglist'] = $uti->lister();
+        $variable['titre'] = "LOG  (".count($uti->lister()).")";
+        return $this->render("admin/log", $variable);
 
+    }
 }

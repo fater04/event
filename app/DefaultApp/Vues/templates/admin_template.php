@@ -38,14 +38,17 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     <title>B-EVENT - <?php if (isset($titre)) echo $titre ;?> </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-   <!-- third party css -->
-        <link href="<?= app::autre('assets/libs/datatables/dataTables.bootstrap4.css')?>"  rel="stylesheet" type="text/css" />
-        <link href="<?= app::autre('assets/libs/datatables/responsive.bootstrap4.css')?>"  rel="stylesheet" type="text/css" />
-        <link href="<?= app::autre('assets/libs/datatables/buttons.bootstrap4.css')?>"  rel="stylesheet" type="text/css" />
-        <link href="<?= app::autre('assets/libs/datatables/select.bootstrap4.css')?>"  rel="stylesheet" type="text/css" />
-        <link href="<?= app::autre('assets/libs/fullcalendar/fullcalendar.min.css')?>" rel="stylesheet" type="text/css" />
-        <!-- third party css end -->
-
+    <!-- third party css -->
+    <link href="<?= app::autre('assets/libs/datatables/dataTables.bootstrap4.css')?>" rel="stylesheet"
+        type="text/css" />
+    <link href="<?= app::autre('assets/libs/datatables/responsive.bootstrap4.css')?>" rel="stylesheet"
+        type="text/css" />
+    <link href="<?= app::autre('assets/libs/datatables/buttons.bootstrap4.css')?>" rel="stylesheet" type="text/css" />
+    <link href="<?= app::autre('assets/libs/datatables/select.bootstrap4.css')?>" rel="stylesheet" type="text/css" />
+    <link href="<?= app::autre('assets/libs/fullcalendar/fullcalendar.min.css')?>" rel="stylesheet" type="text/css" />
+    <link href="<?= app::autre('assets/libs/jquery-vectormap/jquery-jvectormap-1.2.2.css')?>" rel="stylesheet"
+        type="text/css" />
+    <!-- third party css end -->
     <link href="<?= app::autre('assets/css/bootstrap.min.css')?>" rel="stylesheet" type="text/css" />
     <link href="<?= app::autre('assets/css/icons.min.css')?>" rel="stylesheet" type="text/css" />
     <link href="<?= app::autre('assets/css/app.min.css')?>" rel="stylesheet" type="text/css" />
@@ -64,14 +67,14 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     }
     </style>
 </head>
-<!-- collapsed side-bar ---- class="enlarged" data-keep-enlarged="true"> -->
+<!-- collapsed side-bar ---- > -->
 <!-- color topbar------class="topbar-dark topbar-light" -->
 <!-- color sidebar--------- class="left-side-menu-dark left-side-menu-light"  -->
 <!-- box layout ----------class="enlarged boxed-layout" data-keep-enlarged="true" -->
 <!-- -- small sidebar -------------class="left-side-menu-sm"---------- -->
 
 
-<body class=" ">
+<body    <?php if ($u0->getRole() == 'registrant') { ?> class="left-side-menu-dark enlarged" data-keep-enlarged="true"  <?php   }else{ ?> class="left-side-menu-dark "<?Php } ?>>
     <div id="preloader"></div>
     <!-- Begin page -->
     <div id="wrapper">
@@ -196,8 +199,8 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
         <!-- end Topbar -->
 
         <!-- ========== Left Sidebar Start ========== -->
-        <?php if ($u0->getRole() != 'registrant') { ?>
-        <div class="left-side-menu">
+    
+        <div class="left-side-menu" >
 
             <div class="slimscroll-menu">
 
@@ -250,13 +253,16 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                             </a>
                         </li>
                         <?php if ($check != '0' || $u0->getRole() == "admin") { ?>
+                        
+                            <?php if ($u0->getRole() != 'registrant') { ?> 
                         <li>
                             <a href="javascript: void(0);" class="waves-effect" data-toggle="modal"
                                 data-target="#con-close-modal">
                                 <i class="fa fa-envelope"></i><span> Send Globale</span>
                             </a>
                         </li>
-                        <?php } ?>
+
+                        <?php } } ?>
                         <li>
                             <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("event") ?>" class="waves-effect ">
                                 <i class="ti-calendar"></i><span> Evennement </span>
@@ -275,6 +281,11 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                                 </li>
 
                             </ul>
+                        </li>
+                        <li>
+                            <a href="<?= \app\DefaultApp\DefaultApp::genererUrl("logs") ?>" class="waves-effect ">
+                                <i class="ti-list"></i><span> Log</span>
+                            </a>
                         </li>
                         <?php } ?>
 
@@ -311,7 +322,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
             </div>
 
         </div>
-        <?php   } ?>
+      
         <!-- Left Sidebar End -->
 
         <!-- Start Page Content here -->
@@ -320,7 +331,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 
                 <!-- Start Content-->
                 <div class="container-fluid">
-                <div class="row">
+                    <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
                                 <div class="page-title-right">
@@ -374,7 +385,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Modal Content is Responsive</h4>
+                        <h4 class="modal-title">Envoyer Un Message a tous les Participants (es)</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <form method="post" id="globale_send">
@@ -388,7 +399,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                                              $event0 = new \app\DefaultApp\Models\Event;
                                             $e0 = $event0->lister();
                                          foreach ($e0 as $e00) { ?>
-                                         <option value="<?= $e00->getId() ?>"> <?= $e00->getTitre() ?></option>
+                                        <option value="<?= $e00->getId() ?>"> <?= $e00->getTitre() ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -408,10 +419,10 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                             <button type="submit" class="btn btn-info waves-effect waves-light">Send <span
                                     class="fa fa-send"></span></button>
                         </div>
-                   </form>
+                    </form>
                 </div>
             </div>
-        </div><!-- /.modal -->
+        </div>
 
 
     </div>
@@ -425,52 +436,96 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     <script src="<?= app::autre('assets/js/pages/dashboard-1.init.js')?>"></script>
     <script src="<?= app::autre('assets/js/app.min.js')?>"></script>
 
-  
+    <!--------------------table data ------------>
+    <script src="<?php echo app::autre("assets/libs/datatables/jquery.dataTables.min.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/dataTables.bootstrap4.min.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/dataTables.buttons.min.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/buttons.bootstrap4.min.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/jszip.min.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/pdfmake.min.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/vfs_fonts.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/buttons.html5.min.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/buttons.print.min.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/dataTables.keyTable.min.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/dataTables.responsive.min.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/responsive.bootstrap4.min.js") ?>"></script>
+    <script src="<?=app::autre("assets/libs/datatables/dataTables.select.min.js") ?>"></script>
 
-<!--------------------table data ------------>
- <script src="<?php echo app::autre("assets/libs/datatables/jquery.dataTables.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/dataTables.bootstrap4.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/dataTables.buttons.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/buttons.bootstrap4.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/jszip.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/pdfmake.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/vfs_fonts.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/buttons.html5.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/buttons.print.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/dataTables.keyTable.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/dataTables.responsive.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/responsive.bootstrap4.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/libs/datatables/dataTables.select.min.js") ?>"></script>
-<!-- ------------calendar-------------- -->
-<script src="<?php echo app::autre("plugins/moment.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/fullcalendar/fullcalendar.min.js") ?>"></script>
-<script src="<?php echo app::js("jquery.fullcalendar") ?>"></script>
-<script src="<?php echo app::autre("plugins/bootstrap-inputmask/bootstrap-inputmask.min.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/moment.js") ?>"></script>
-<script src="<?php echo app::autre("plugins/fullcalendar/fullcalendar.min.js") ?>"></script>
-<script src="<?php echo app::js("jquery.fullcalendar") ?>"></script>
-<script src="<?php echo app::autre("plugins/bootstrap-inputmask/bootstrap-inputmask.min.js") ?>"></script>
-<?php if (isset($lisevent)) {
+    <!-- ------------calendar-------------- -->
+    <script src="<?=app::autre("plugins/moment.js") ?>"></script>
+    <script src="<?=app::autre("plugins/fullcalendar/fullcalendar.min.js") ?>"></script>
+    <script src="<?=app::js("jquery.fullcalendar") ?>"></script>
+    <script src="<?=app::autre("plugins/bootstrap-inputmask/bootstrap-inputmask.min.js") ?>"></script>
+    <script src="<?=app::autre("plugins/moment.js") ?>"></script>
+    <script src="<?=app::autre("plugins/fullcalendar/fullcalendar.min.js") ?>"></script>
+    <script src="<?=app::js("jquery.fullcalendar") ?>"></script>
+    <script src="<?=app::autre("plugins/bootstrap-inputmask/bootstrap-inputmask.min.js") ?>"></script>
+
+    <!-----------chart----------------->
+    <script src="<?=app::autre('assets/libs/apexcharts/apexcharts.min.js')?>"></script>
+    <?php if (isset($listerE)) {
+    ?>
+    <script>
+    var chart;
+    options = {
+        chart: {
+            height: 235,
+            type: "donut"
+        },
+        series: [<?php if (isset($listerE)) { foreach ($listerE as $ev1) {?>
+                                <?=\app\DefaultApp\Models\Participant::countP($ev1->getId())?>,
+                                <?php }  } ?> ],
+        legend: {
+            show: !0,
+            position: "bottom",
+            horizontalAlign: "center",
+            verticalAlign: "middle",
+            floating: !1,
+            fontSize: "14px",
+            offsetX: 0,
+            offsetY: -10
+        },
+        labels: [<?php if (isset($listerE)) { foreach ($listerE as $ev1) {?>
+                        "<?= $ev1->getTitre() ?>",
+                        <?php }  } ?> ],
+        colors: [<?php if (isset($listerE)) { foreach ($listerE as $ev1) {?>
+                        "<?php echo "#".substr(md5(rand()), 0, 6);  ?>",
+                        <?php }  } ?> ],
+        responsive: [{
+            breakpoint: 600,
+            options: {
+                chart: {
+                    height: 210
+                },
+                legend: {
+                    show: !1
+                }
+            }
+        }]
+    };
+    (chart = new ApexCharts(document.querySelector("#apex-pie-2"), options)).render();
+    </script>
+    <?php } ?>
+
+    <?php if (isset($lisevent)) {
     ?>
 
     <script>
-        !function ($) {
-            "use strict";
+    ! function($) {
+        "use strict";
 
-            var CalendarApp = function () {
-                this.$body = $("body")
-                this.$modal = $('#event-modal'),
-                    this.$event = ('#external-events div.external-event'),
-                    this.$calendar = $('#calendar'),
-                    this.$saveCategoryBtn = $('.save-category'),
-                    this.$categoryForm = $('#add-category form'),
-                    this.$extEvents = $('#external-events'),
-                    this.$calendarObj = null
-            };
-
-
-            /* on drop */
-            CalendarApp.prototype.onDrop = function (eventObj, date) {
+        var CalendarApp = function() {
+            this.$body = $("body")
+            this.$modal = $('#event-modal'),
+                this.$event = ('#external-events div.external-event'),
+                this.$calendar = $('#calendar'),
+                this.$saveCategoryBtn = $('.save-category'),
+                this.$categoryForm = $('#add-category form'),
+                this.$extEvents = $('#external-events'),
+                this.$calendarObj = null
+        };
+        /* on drop */
+        CalendarApp.prototype.onDrop = function(eventObj, date) {
                 var $this = this;
                 // retrieve the dropped element's stored Event Object
                 var originalEventObject = eventObj.data('eventObject');
@@ -489,37 +544,38 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                     eventObj.remove();
                 }
             },
-                /* on click on event */
-                CalendarApp.prototype.onEventClick = function (calEvent, jsEvent, view) {
-                    var $this = this;
-                    var form = $("<form></form>");
-                    form.append("<label>Description</label>");
-                    form.append("<div class='input-group'><textarea class='form-control' rows='5'>" + calEvent.description + "</textarea></div>");
-                    $this.$modal.modal({
-                        backdrop: 'static'
-                    });
-                    $this.$modal.find('.delete-event').show().end().find('.save-event').hide().end().find('.modal-body').empty().prepend(form).end().find('.delete-event').unbind('click').click(function () {
-                        $this.$calendarObj.fullCalendar('removeEvents', function (ev) {
+            /* on click on event */
+            CalendarApp.prototype.onEventClick = function(calEvent, jsEvent, view) {
+                var $this = this;
+                var form = $("<form></form>");
+                form.append("<label>Description</label>");
+                form.append("<div class='input-group'><textarea class='form-control' rows='5'>" + calEvent.description +
+                    "</textarea></div>");
+                $this.$modal.modal({
+                    backdrop: 'static'
+                });
+                $this.$modal.find('.delete-event').show().end().find('.save-event').hide().end().find('.modal-body')
+                    .empty().prepend(form).end().find('.delete-event').unbind('click').click(function() {
+                        $this.$calendarObj.fullCalendar('removeEvents', function(ev) {
                             return (ev._id == calEvent._id);
                         });
                         $this.$modal.modal('hide');
                     });
-                    $this.$modal.find('form').on('submit', function () {
-                        calEvent.title = form.find("input[type=text]").val();
-                        $this.$calendarObj.fullCalendar('updateEvent', calEvent);
-                        $this.$modal.modal('hide');
-                        return false;
-                    });
-                },
-                /* on select */
-                CalendarApp.prototype.onSelect = function (start, end, allDay) {
+                $this.$modal.find('form').on('submit', function() {
+                    calEvent.title = form.find("input[type=text]").val();
+                    $this.$calendarObj.fullCalendar('updateEvent', calEvent);
+                    $this.$modal.modal('hide');
+                    return false;
+                });
+            },
+            /* on select */
+            CalendarApp.prototype.onSelect = function(start, end, allDay) {
 
 
-                },
-                CalendarApp.prototype.enableDrag = function () {
-                }
-            /* Initializing */
-            CalendarApp.prototype.init = function () {
+            },
+            CalendarApp.prototype.enableDrag = function() {}
+        /* Initializing */
+        CalendarApp.prototype.init = function() {
                 this.enableDrag();
                 /*  Initialize the calendar  */
                 var date = new Date();
@@ -530,18 +586,19 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                 var today = new Date($.now());
 
 
-                var defaultEvents = [
-                    <?php    foreach ($lisevent as $ev) { ?>
-                    {
+                var defaultEvents = [ <?php foreach($lisevent as $ev) { ?> {
 
-                        title: '<?= $ev->getTitre() ?>',
-                        description: '<?= $ev->getDescription()?>',
-                        start: new Date('<?= $ev->getDateDebut()?>'),
-                        className: 'bg-purple'
-                    } <?php echo ",";} ?>  ];
+                            title: '<?= $ev->getTitre() ?>',
+                            description: '<?= $ev->getDescription()?>',
+                            start: new Date('<?= $ev->getDateDebut()?>'),
+                            className: 'bg-purple'
+                        } <?php echo ",";
+                    } ?>
+                ];
                 var $this = this;
                 $this.$calendarObj = $this.$calendar.fullCalendar({
-                    slotDuration: '00:15:00', /* If we want to split day time each 15minutes */
+                    slotDuration: '00:15:00',
+                    /* If we want to split day time each 15minutes */
                     minTime: '08:00:00',
                     defaultView: 'month',
                     handleWindowResize: true,
@@ -556,65 +613,76 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                     droppable: true, // this allows things to be dropped onto the calendar !!!
                     eventLimit: true, // allow "more" link when too many events
                     selectable: true,
-                    drop: function (date) {
+                    drop: function(date) {
                         $this.onDrop($(this), date);
                     },
-                    select: function (start, end, allDay) {
+                    select: function(start, end, allDay) {
                         $this.onSelect(start, end, allDay);
                     },
-                    eventClick: function (calEvent, jsEvent, view) {
+                    eventClick: function(calEvent, jsEvent, view) {
                         $this.onEventClick(calEvent, jsEvent, view);
                     },
 
                 });
             },
 
-                //init CalendarApp
-                $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor = CalendarApp
+            //init CalendarApp
+            $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor = CalendarApp
 
-        }(window.jQuery),
+    }(window.jQuery),
 
-//initializing CalendarApp
-            function ($) {
-                "use strict";
-                $.CalendarApp.init()
-            }(window.jQuery);
-
+    //initializing CalendarApp
+    function($) {
+        "use strict";
+        $.CalendarApp.init()
+    }(window.jQuery);
     </script>
-<?php } ?>
-<!----custom----->
-<script src="<?php echo app::js("fater") ?>"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
+    <?php } ?>
+    <!----custom----->
+    <script src="<?php echo app::js("fater") ?>"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
 
-        $(".alert").delay(4000).slideUp(200, function () {
+        $(".alert").delay(4000).slideUp(200, function() {
             $(this).alert('close');
         });
         $('#datatable').DataTable({
             lengthChange: true,
             dom: 'Bfrtip',
-            buttons: [
-                {
+            buttons: [{
                     extend: 'copyHtml5',
-                    exportOptions: {orthogonal: 'export'}
+                    exportOptions: {
+                        orthogonal: 'export'
+                    }
                 },
                 {
                     extend: 'excelHtml5',
-                    exportOptions: {orthogonal: 'export'}
+                    exportOptions: {
+                        orthogonal: 'export'
+                    }
                 },
                 {
                     extend: 'pdfHtml5',
-                    exportOptions: {orthogonal: 'export'}
+                    exportOptions: {
+                        orthogonal: 'export'
+                    }
                 }, {
                     extend: 'excel',
-                    exportOptions: {orthogonal: 'export'}
+                    exportOptions: {
+                        orthogonal: 'export'
+                    }
                 }
             ]
         });
     });
-
-</script>
-
+    </script>
+     <?php if ($u0->getRole() == 'registrant') { ?> 
+     <script>
+      $(".left-side-menu a").click(function(e) {
+   e.preventDefault();
+ });
+<?php } ?>
+      </script>
 </body>
 
 </html>

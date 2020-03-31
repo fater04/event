@@ -10,8 +10,9 @@ class UtilisateurControlleur extends Controlleur
 
     public function ajouter()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Add User',$_SESSION['utilisateur']);
         $variable = array();
-        $variable['titre'] = "Ajouter Utilisateur";
+        $variable['titre'] = "Utilisateur";
         $variable['entete'] = "<div class=\"row\">
                     <div class=\"col-sm-12\">
                         <div class=\"page-title-box\">
@@ -73,9 +74,10 @@ class UtilisateurControlleur extends Controlleur
 
     public function modifier($id)
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Edit User',$_SESSION['utilisateur']);
         $variable = array();
         $variable['id'] = $id;
-        $variable['titre'] = "Modifier Utilisateur";
+        $variable['titre'] = "Utilisateur";
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $nom = trim(addslashes($_POST['nom']));
             $prenom = trim(addslashes($_POST['prenom']));
@@ -118,9 +120,10 @@ class UtilisateurControlleur extends Controlleur
 
     public function profile()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Profile',$_SESSION['utilisateur']);
         $variable = array();
         $variable['id'] = $_SESSION['utilisateur'];
-        $variable['titre'] = "Modifier Utilisateur";
+        $variable['titre'] = "Profile";
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $nom = trim(addslashes($_POST['nom']));
             $prenom = trim(addslashes($_POST['prenom']));
@@ -163,8 +166,9 @@ class UtilisateurControlleur extends Controlleur
 
     public function lister()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Lister User',$_SESSION['utilisateur']);
         $variable = array();
-        $variable['titre'] = "Lister Utilisateur";
+        $variable['titre'] = "Utilisateur";
         $variable['entete'] = "<div class=\"row\">
                     <div class=\"col-sm-12\">
                         <div class=\"page-title-box\">
@@ -213,6 +217,7 @@ class UtilisateurControlleur extends Controlleur
 
     public function change()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('change password',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = "Change-Password";
         $variable['id'] = $_SESSION['utilisateur'];

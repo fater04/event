@@ -5,7 +5,7 @@ if(\app\DefaultApp\Models\Utilisateur::session()){
         $idevent=\app\DefaultApp\Models\Event::rechercher_registrant($_SESSION['utilisateur']);
         if($idevent!=""){
 
-       echo "<script>setTimeout(\"location.href = 'add_participant-".$idevent."';\",0);</script>";
+       echo "<script>setTimeout(\"location.href = 'add-participant-".$idevent."';\",0);</script>";
 
         }else{
             echo "<script>setTimeout(\"location.href = 'ajouter-participant';\",0);</script>";

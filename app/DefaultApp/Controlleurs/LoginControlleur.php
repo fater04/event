@@ -18,6 +18,7 @@ class LoginControlleur extends Controlleur
     public function login()
     {
 
+        \app\DefaultApp\Models\Compteur::enregistre('LOGIN','0');
         $variable = array();
         $variable['titre'] = "Login";
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -100,6 +101,7 @@ class LoginControlleur extends Controlleur
     public function recover()
     {
 
+        \app\DefaultApp\Models\Compteur::enregistre('Recover','0');
         $variable = array();
         $variable['titre'] = "Recover";
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -127,7 +129,7 @@ class LoginControlleur extends Controlleur
 
     public function recoverPassword($id)
     {
-
+        \app\DefaultApp\Models\Compteur::enregistre('Recover password',$id);
         $variable = array();
         $variable['titre'] = "Recover";
         $variable['id']=$id;
@@ -163,7 +165,7 @@ class LoginControlleur extends Controlleur
 
     public function confirme($id)
     {
-
+        \app\DefaultApp\Models\Compteur::enregistre('Confirme Email',$id);
         $variable = array();
         $variable['titre'] = "Confimed Email";
         $variable['id'] = $id;
@@ -178,7 +180,7 @@ class LoginControlleur extends Controlleur
 
     public function register()
     {
-
+        \app\DefaultApp\Models\Compteur::enregistre('Register','0');
         $variable = array();
         $variable['titre'] = "Register";
 
@@ -242,7 +244,7 @@ class LoginControlleur extends Controlleur
 
     public function logout()
     {
-
+        \app\DefaultApp\Models\Compteur::enregistre('Logout',$_SESSION['utilisateur']);
         $variable = array();
 
         if ($_SERVER['REQUEST_METHOD'] == "GET") {

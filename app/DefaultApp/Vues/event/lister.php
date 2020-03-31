@@ -1,12 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: fater
- * Date: 4/17/2019
- * Time: 9:31 PM
- */
-
-?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -20,19 +11,19 @@
                                 <a href="add-event" class="btn btn-lg btn-primary btn-block waves-effect waves-light">
                                <i class="fa fa-plus"></i> Create New</a>
                                 <br/><br/> <br/><br/>
-                                <div class="table-responsive text-center">
+                                <div class="table-responsive text-left">
                                     <h4>Liste des Evennements</h4>
                                     <table class="table table-hover table-stripped" >
-                                        <thead>
-                                        <tr>
+                                        <thead class="bg-white">
+                                        <tr >
                                             <th>
-                                                Titre
+                                                TITRE
                                             </th>
                                             <th>
-                                                Date
+                                                DATE
                                             </th>
                                             <th>
-                                                Option
+                                                OPTION
                                             </th>
                                         </tr>
                                         </thead>

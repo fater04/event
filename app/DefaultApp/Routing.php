@@ -15,6 +15,8 @@ App::get("/", "Admin.accueil");
 //App::post("/accueil", "pages.accueil","home");
 App::get("/Home", "Admin.accueil","Home");
 
+//log
+App::get("/logs", "Admin.log","logs");
 
 ///root login
 App::get("/login", "Login.login", "login");
@@ -52,8 +54,8 @@ App::post("/all-registrant", "participant.all_registrant", "all-registrant");
 App::get("/edit-registrant-:id", "participant.edit_registrant","edit-registrant")->avec("id","['0-9']+");
 App::post("/edit-registrant-:id", "participant.edit_registrant","edit-registrant")->avec("id","['0-9']+");
 
-App::get("/edit-user/:id", "utilisateur.modifier","edit-user")->avec("id","['0-9']+");
-App::post("/edit-user/:id", "utilisateur.modifier","edit-user")->avec("id","['0-9']+");
+App::get("/edit-user-:id", "utilisateur.modifier","edit-user")->avec("id","['0-9']+");
+App::post("/edit-user-:id", "utilisateur.modifier","edit-user")->avec("id","['0-9']+");
 App::get("/all-user", "utilisateur.lister","all-user");
 
 //profile
@@ -69,8 +71,8 @@ App::get("/add-event", "Event.ajouter","add-event");
 App::post("/add-event", "Event.ajouter","add-event");
 App::get("/event", "Event.lister","event");
 App::post("/event", "Event.lister","event");
-App::get("/edit-event/:id", "Event.modifier","edit-event")->avec("id","['0-9']+");
-App::post("/edit-event/:id", "Event.modifier","edit-event")->avec("id","['0-9']+");
+App::get("/edit-event-:id", "Event.modifier","edit-event")->avec("id","['0-9']+");
+App::post("/edit-event-:id", "Event.modifier","edit-event")->avec("id","['0-9']+");
 App::get("/all-event", "Event.lister","all-event");
 App::post("/all-event", "Event.lister","all-event");
 

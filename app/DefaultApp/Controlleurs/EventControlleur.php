@@ -16,6 +16,7 @@ class EventControlleur extends Controlleur
     protected $nom_template = "admin_template";
     public function ajouter()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Add Event',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = "Ajouter Event";
         if($_SESSION['role']=="admin"){
@@ -91,6 +92,7 @@ class EventControlleur extends Controlleur
     }
     public function lister()
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Lister Event',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = 'Event';
         $event1 = $this->getModel('Event');
@@ -121,6 +123,7 @@ if($_SESSION['role']=="admin"){
 
     public function modifier($id)
     {
+        \app\DefaultApp\Models\Compteur::enregistre('Modifier Event',$_SESSION['utilisateur']);
         $variable = array();
         $variable['id'] = $id;
         $variable['titre'] = "Modifier Utilisateur";
