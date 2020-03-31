@@ -18,7 +18,7 @@ class LoginControlleur extends Controlleur
     public function login()
     {
 
-        \app\DefaultApp\Models\Compteur::enregistre('LOGIN','0');
+        \app\DefaultApp\Models\Compteur::enregistre('login','0');
         $variable = array();
         $variable['titre'] = "Login";
         if ($_SERVER['REQUEST_METHOD'] == "POST") {

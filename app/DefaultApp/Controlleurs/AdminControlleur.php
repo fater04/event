@@ -21,7 +21,7 @@ class AdminControlleur extends Controlleur
 
     public function accueil()
     {
-        \app\DefaultApp\Models\Compteur::enregistre('ACCUEIL',$_SESSION['utilisateur']);
+        \app\DefaultApp\Models\Compteur::enregistre('accueil',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = "HOME";
         $uti = $this->getModel('Event');
@@ -36,7 +36,7 @@ class AdminControlleur extends Controlleur
 
     public function setting()
     {
-        \app\DefaultApp\Models\Compteur::enregistre('SETTING',$_SESSION['utilisateur']);
+        \app\DefaultApp\Models\Compteur::enregistre('setting',$_SESSION['utilisateur']);
         $variable = array();
         $variable['titre'] = "Configuration";
         $variable['id'] = $_SESSION['utilisateur'];

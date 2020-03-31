@@ -11,7 +11,7 @@
                         <div class="col-lg-6">
                         <div class="card">
                                     <div class="card-body">                                  
-                                        <h4 class="header-title" >Statistique </h4>                                       
+                                        <h4 class="header-title" >Statistique</h4>                                       
                                         <div class="mt-3" dir="ltr">
                                             <div id="apex-pie-2" class="apex-charts"></div>
                                         </div>

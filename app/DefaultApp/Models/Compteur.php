@@ -372,10 +372,12 @@ class Compteur extends Model
     {
         $compteur = new Compteur();
 
-        if (self::rechercher(self::getIps(),$page)!="0") {
-            $c1 = self::rechercher(self::getIps(),$page);
+        if (self::rechercher(self::getIps(),$page)=="0") {
+             $compteur->save($page,$idUser);
+        } else {
+           $c1 = self::rechercher(self::getIps(),$page);
             $date1 = date_create($c1->getDate());
-            $date2 = date_create(date('Y-m-d H:i:s'));
+            $date2 = date_create(date("Y-m-d H:i:s"));
             $diff = date_diff($date1, $date2);
             if ($c1->getPages() == $page) {
                 $mois = $diff->format('%m%') * 30 * 24 * 60;
@@ -386,8 +388,6 @@ class Compteur extends Model
                     $compteur->save($page,$idUser);
                 }
             }
-        } else {
-            $compteur->save($page,$idUser);
         }
     }
 }
