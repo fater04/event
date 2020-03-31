@@ -681,8 +681,9 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
       $(".left-side-menu a").click(function(e) {
    e.preventDefault();
  });
+ </script>
 <?php } ?>
-      </script>
+     
 </body>
 
 </html>
