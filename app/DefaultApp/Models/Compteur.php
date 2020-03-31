@@ -328,9 +328,9 @@ class Compteur extends Model
     {
         try {
             $con = self::connection();
-            $req = "select *from compteurs WHERE iP=:iP and pages=:page order by id DESC limit 1";
+            $req = "select *from compteurs WHERE ip=:ip and pages=:page order by id DESC limit 1";
             $stmt = $con->prepare($req);
-            $stmt->execute(array(":iP" => $IP,":page"=>$page));
+            $stmt->execute(array(":ip" => $IP,":page"=>$page));
             $res = $stmt->fetchAll(\PDO::FETCH_CLASS, "app\\DefaultApp\\Models\\Compteur");
             if (count($res) > 0) {
                 return $res[0];
