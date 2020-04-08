@@ -14,6 +14,8 @@ class Compteur extends Model
     private $ip;
     private $idUser;
     private $date;
+    
+    
 
     /**
      * Get the value of id
@@ -324,18 +326,18 @@ class Compteur extends Model
     }
 
 
-    public static function rechercher($IP,$page)
+    public static function rechercher($page)
     {
         try {
             $con = self::connection();
             $req = "select *from compteurs WHERE ip=:ip and pages=:page order by id DESC limit 1";
             $stmt = $con->prepare($req);
-            $stmt->execute(array(":ip" => $IP,":page"=>$page));
+            $stmt->execute(array(":ip" => self::getIps(),":page"=>$page));
             $res = $stmt->fetchAll(\PDO::FETCH_CLASS, "app\\DefaultApp\\Models\\Compteur");
             if (count($res) > 0) {
                 return $res[0];
             } else {
-                return "0";;
+                return 0;
             }
         } catch (\Exception $ex) {
             throw new \Exception($ex->getMessage());
@@ -370,21 +372,23 @@ class Compteur extends Model
 
     public static function enregistre($page,$idUser)
     {
+        date_default_timezone_set ('America/Port-au-Prince');
         $compteur = new Compteur();
 
-        if (self::rechercher(self::getIps(),$page)=="0") {
+        if (self::rechercher($page)===0) {
              $compteur->save($page,$idUser);
         } else {
-           $c1 = self::rechercher(self::getIps(),$page);
-            $date1 = date_create($c1->getDate());
-            $date2 = date_create(date("Y-m-d H:i:s"));
-            $diff = date_diff($date1, $date2);
-            if ($c1->getPages() == $page) {
-                $mois = $diff->format('%m%') * 30 * 24 * 60;
-                $jours = $diff->format('%d%') * 24 * 60;
-                $heures = $diff->format('%h%') * 60;
-                $minut = $diff->format('%i%');
-                if (($mois + $jours + $heures + $minut) > 59) {
+          $c1 = self::rechercher($page);
+        $date1 = date_create($c1->getDate());
+           $date2 = date_create(date("Y-m-d H:i:s"));
+       $diff = date_diff($date1, $date2);
+            if ($c1->getPages() === $page) {
+         $mois = $diff->format('%m%') * 30 * 24 * 60;
+           $jours = $diff->format('%d%') * 24 * 60;
+               $heures = $diff->format('%h%') * 60;
+             $minut = $diff->format('%i%');
+              $mT=$mois+$jours+$heures+$minut;
+                if ($mT > 59) {
                     $compteur->save($page,$idUser);
                 }
             }
