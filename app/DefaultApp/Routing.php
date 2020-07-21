@@ -1,11 +1,16 @@
 <?php
 
 use app\DefaultApp\DefaultApp as App;
+
 //Api
 App::post("/apiLogin", "Api.login", "apilogin");
 App::post("/check", "Api.check", "check");
 App::post("/updatesend", "Api.updatesend", "updatesend");
 App::post("/check-config", "Api.checkConfig", "check-config");
+App::get("/user","api.rechercherUser");
+App::get("send","api.envoyer");
+
+
 //bios_sms_sender_v1.0.0.apk
 //App::get("/", "Admin.accueil");
 

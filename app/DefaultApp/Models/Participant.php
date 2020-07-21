@@ -23,6 +23,41 @@ class Participant extends Model
     private $id_event;
     private $id_user;
     private $send;
+    private $device;
+    private $message;
+
+    /**
+     * @return mixed
+     */
+    public function getDevice()
+    {
+        return $this->device;
+    }
+
+    /**
+     * @param mixed $device
+     */
+    public function setDevice($device)
+    {
+        $this->device = $device;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param mixed $message
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    }
+
 
     /**
      * @return mixed
@@ -39,7 +74,6 @@ class Participant extends Model
     {
         $this->send = $send;
     }
-
 
 
     /**
@@ -228,8 +262,9 @@ class Participant extends Model
         }
     }
 
-    public function ExistPhone($telephone){
-        try{
+    public function ExistPhone($telephone)
+    {
+        try {
 
             $con = self::connection();
             $req = "SELECT *FROM participant WHERE  telephone='" . $telephone . "' ";
@@ -239,16 +274,17 @@ class Participant extends Model
             } else {
                 return false;
             }
-        }catch (\Exception $ex){
+        } catch (\Exception $ex) {
             return $ex->getMessage();
         }
     }
+
     public function enregistrer()
     {
         $con = self::connection();
         try {
-            $req = "INSERT INTO participant(nom,prenom,sexe,telephone,email,profession,id_event,id_user) 
-            VALUES (:nom,:prenom,:sexe,:telephone,:email,:profession,:event,:users) ";
+            $req = "INSERT INTO participant(nom,prenom,sexe,telephone,email,profession,id_event,id_user,message,device) 
+            VALUES (:nom,:prenom,:sexe,:telephone,:email,:profession,:event,:users,:message,:device) ";
             $stmt = $con->prepare($req);
             $param = array(
                 ":nom" => $this->nom,
@@ -258,19 +294,21 @@ class Participant extends Model
                 ":email" => $this->email,
                 ":event" => $this->id_event,
                 ":users" => $this->id_user,
-                ":profession" => $this->profession
+                ":profession" => $this->profession,
+                ":message" => $this->message,
+                ":device" => $this->device
             );
-if($this->ExistPhone($this->telephone)){
-    $req0 = "update participant set send=:send WHERE telephone=:telephone";
-    $stmt0 = $con->prepare($req0);
-    $param = array(
-        ":send" => 'NON',
-        ":telephone" => $this->telephone
-    );
+            if ($this->ExistPhone($this->telephone)) {
+                $req0 = "update participant set send=:send WHERE telephone=:telephone";
+                $stmt0 = $con->prepare($req0);
+                $param = array(
+                    ":send" => 'NON',
+                    ":telephone" => $this->telephone
+                );
 
-    $stmt0->execute($param);
-    return " Participant(e) deja Enregistre(e)";
-}
+                $stmt0->execute($param);
+                return " Participant(e) deja Enregistre(e)";
+            }
 
 
             if ($stmt->execute($param)) {
@@ -318,7 +356,7 @@ if($this->ExistPhone($this->telephone)){
                 $req = "select *from participant";
             } elseif ($id != "" && $event != "") {
                 $req = "select *from participant where id_user='" . $id . "' and id_event='" . $event . "'";
-            }  else {
+            } else {
                 $req = "select *from participant where id_user='" . $id . "'";
             }
 
@@ -337,7 +375,7 @@ if($this->ExistPhone($this->telephone)){
             $con = self::connection();
             if ($id == "") {
                 $req = "select *from participant";
-            }  else {
+            } else {
                 $req = "select *from participant where id_event='" . $id . "'";
             }
 
@@ -414,12 +452,14 @@ if($this->ExistPhone($this->telephone)){
             return "no";
         }
     }
-    public static function rechercherSend($id_event,$send=""){
+
+    public static function rechercherSend($id_event, $send = "")
+    {
         try {
             $con = self::connection();
-            if($send=="") {
+            if ($send == "") {
                 $req = "select *from participant where send='NON' and id_event='" . $id_event . "'";
-            }else{
+            } else {
                 $req = "select *from participant where  id_event='" . $id_event . "'";
             }
             $stmt = $con->prepare($req);
@@ -434,7 +474,8 @@ if($this->ExistPhone($this->telephone)){
             throw new \Exception($ex->getMessage());
         }
     }
-    public static  function updateSend($id)
+
+    public static function updateSend($id)
     {
         $con = self::connection();
         try {
@@ -447,15 +488,16 @@ if($this->ExistPhone($this->telephone)){
             );
 
             if ($stmt->execute($param)) {
-                return array('r'=>'ok');
+                return array('r' => 'ok');
             } else {
-                return array('r'=>'no');
+                return array('r' => 'no');
             }
         } catch (\Exception $ex) {
             throw new \Exception($ex->getMessage());
         }
     }
-    public static  function updateSendAll($id)
+
+    public static function updateSendAll($id)
     {
         $con = self::connection();
         try {
@@ -479,38 +521,40 @@ if($this->ExistPhone($this->telephone)){
 
     public static function countP($id)
     {
-        $con=self::connection();
-        $req="select COUNT(*) as 'nb' from participant  WHERE id_event='".$id."'";
+        $con = self::connection();
+        $req = "select COUNT(*) as 'nb' from participant  WHERE id_event='" . $id . "'";
         $rs = $con->query($req);
-        $data=$rs->fetch();
+        $data = $rs->fetch();
         return $data['nb'];
 
     }
-    public static function countParticipant($id="")
+
+    public static function countParticipant($id = "")
     {
-        $con=self::connection();
-        if($id=="") {
-            $req="select COUNT(*) as 'nb' from participant ";
-        }else{
-            $req="select COUNT(*) as 'nb' from participant  WHERE id_user='".$id."'";
+        $con = self::connection();
+        if ($id == "") {
+            $req = "select COUNT(*) as 'nb' from participant ";
+        } else {
+            $req = "select COUNT(*) as 'nb' from participant  WHERE id_user='" . $id . "'";
         }
-       
+
         $rs = $con->query($req);
-        $data=$rs->fetch();
+        $data = $rs->fetch();
         return $data['nb'];
 
     }
-    public static function countSexe($sexe="",$id="")
+
+    public static function countSexe($sexe = "", $id = "")
     {
-        $con=self::connection();
-        if($id=="") {
-            $req="select COUNT(*) as 'nb' from participant  WHERE sexe='".$sexe."'";
-        }else{
-            $req="select COUNT(*) as 'nb' from participant  WHERE sexe='".$sexe."' and id_user='".$id."'";
+        $con = self::connection();
+        if ($id == "") {
+            $req = "select COUNT(*) as 'nb' from participant  WHERE sexe='" . $sexe . "'";
+        } else {
+            $req = "select COUNT(*) as 'nb' from participant  WHERE sexe='" . $sexe . "' and id_user='" . $id . "'";
         }
-       
+
         $rs = $con->query($req);
-        $data=$rs->fetch();
+        $data = $rs->fetch();
         return $data['nb'];
 
     }

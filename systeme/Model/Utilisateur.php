@@ -23,6 +23,25 @@ class Utilisateur extends Model
     private $statut;
     private $telephone;
     private $photo;
+    private $token;
+
+    /**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param mixed $token
+     */
+    public function setToken($token)
+    {
+
+        $this->token = $token;
+    }
+
 
     /**
      * @return mixed
@@ -314,8 +333,8 @@ class Utilisateur extends Model
             if (self::SiPseudoExiste($this->getPseudo())) {
                 return "pseudo existe";
             } else {
-                $req = "insert into utilisateur (pseudo, email, role, nom, prenom, motdepasse, active,photo,telephone) VALUES 
-        ('" . $this->pseudo . "','" . $this->email . "','" . $this->role . "','" . $this->nom . "','" . $this->prenom . "','" . $this->motdepasse . "','" . $this->active . "','" . $this->photo . "','" . $this->telephone . "')";
+                $req = "insert into utilisateur (pseudo, email, role, nom, prenom, motdepasse, active,photo,telephone,token) VALUES 
+        ('" . $this->pseudo . "','" . $this->email . "','" . $this->role . "','" . $this->nom . "','" . $this->prenom . "','" . $this->motdepasse . "','" . $this->active . "','" . $this->photo . "','" . $this->telephone . "','" . $this->token . "')";
                 if (self::connection()->query($req)) {
                     $con = null;
                     return "ok";
@@ -338,8 +357,8 @@ class Utilisateur extends Model
             } else if (self::SiEmailExiste($this->getEmail())) {
                 return "email";
             } else {
-                $req = "insert into utilisateur (pseudo, email, motdepasse,role) VALUES 
-        ('" . $this->pseudo . "','" . $this->email . "','" . $this->motdepasse . "','" . $this->role . "')";
+                $req = "insert into utilisateur (pseudo, email, motdepasse,role,token) VALUES 
+        ('" . $this->pseudo . "','" . $this->email . "','" . $this->motdepasse . "','" . $this->role . "','" . $this->token . "')";
                 if (self::connection()->query($req)) {
                     $con = null;
                     return "ok";
@@ -363,7 +382,7 @@ class Utilisateur extends Model
      */
     public static function Rechercher($critere)
     {
-        $req = "select *from utilisateur where id='" . $critere . "' or pseudo='" . $critere . "' or email='" . $critere . "' or telephone='" . $critere . "'";
+        $req = "select *from utilisateur where id='" . $critere . "' or pseudo='" . $critere . "' or email='" . $critere . "' or telephone='" . $critere . "'or token='" . $critere . "'";
         $rs = self::connection()->query($req);
         if ($data = $rs->fetch()) {
             $con = null;
@@ -379,6 +398,7 @@ class Utilisateur extends Model
             $u->setStatut($data['statut']);
             $u->setPhoto($data['photo']);
             $u->setTelephone($data['telephone']);
+            $u->setToken($data['token']);
             return $u;
 
         } else {
@@ -546,6 +566,7 @@ class Utilisateur extends Model
             $u->setStatut($data['statut']);
             $u->setPhoto($data['photo']);
             $u->setTelephone($data['telephone']);
+            $u->setToken($data['token']);
             $resultat[] = $u;
         }
         $con = null;
@@ -569,7 +590,23 @@ class Utilisateur extends Model
             return $ex->getMessage();
         }
     }
-
+    public static function search($token)
+    {
+        try {
+            $con = self::connection();
+            $req = "select *from utilisateur where token='".$token."'";
+            $stmt = $con->prepare($req);
+            $stmt->execute();
+            $data = $stmt->fetchAll(\PDO::FETCH_CLASS, "app\DefaultApp\Models\Utilisateur");
+            if(count($data) ==0){
+                return "Introuvable ";
+            }else {
+                return $data;
+            }
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
     /**
      * @return array|string
      */

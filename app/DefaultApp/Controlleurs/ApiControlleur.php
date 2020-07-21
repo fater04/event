@@ -9,6 +9,7 @@
 namespace app\DefaultApp\Controlleurs;
 
 
+use app\DefaultApp\Models\Setting;
 use app\DefaultApp\Models\Utilisateur;
 use systeme\Controlleur\Controlleur;
 
@@ -25,7 +26,6 @@ class ApiControlleur extends Controlleur
         echo json_encode($result);
     }
 
-
     public function check()
     {
         $participant = array();
@@ -34,10 +34,10 @@ class ApiControlleur extends Controlleur
         header("Content-Type: Application/json; charset=UTF-8");
         $json = json_decode(file_get_contents('php://input'));
         $deviceid = $json->device;
-        if(\app\DefaultApp\Models\Setting::rechercher($deviceid)){
-            $s1=\app\DefaultApp\Models\Setting::rechercher($deviceid);
-           $e1= \app\DefaultApp\Models\Event::rechercher_config($s1->getId());
-           $list = \app\DefaultApp\Models\Participant::rechercherSend( $e1->getId());
+        if (\app\DefaultApp\Models\Setting::rechercher($deviceid)) {
+            $s1 = \app\DefaultApp\Models\Setting::rechercher($deviceid);
+            $e1 = \app\DefaultApp\Models\Event::rechercher_config($s1->getId());
+            $list = \app\DefaultApp\Models\Participant::rechercherSend($e1->getId());
             foreach ($list as $p) {
                 array_push($participant, array(
                     'telephone' => $p->getTelephone(),
@@ -47,10 +47,9 @@ class ApiControlleur extends Controlleur
                 ));
             }
             echo json_encode($participant);
-        }else{
+        } else {
             echo json_encode($participant);
         }
-
 
 
     }
@@ -63,16 +62,47 @@ class ApiControlleur extends Controlleur
         $result = \app\DefaultApp\Models\Participant::updateSend($json->id);
         echo json_encode($result);
     }
+
     public function checkConfig()
     {
         $json = json_decode(file_get_contents('php://input'));
         header("Access-control-Allow-Origin: *");
         header("Content-Type: Application/json; charset=UTF-8");
-       echo json_encode(\app\DefaultApp\Models\Setting::checkDevice(strtolower($json->device_id)));
+        echo json_encode(\app\DefaultApp\Models\Setting::checkDevice(strtolower($json->device_id)));
     }
 
+    public function rechercherUser()
+    {
+
+        $json = json_decode(file_get_contents('php://input'));
+        header("Access-control-Allow-Origin: *");
+        header("Content-Type: Application/json; charset=UTF-8");
+
+        if (isset($_GET['token'])) {
+            $result = \systeme\Model\Utilisateur::search($_GET['token']);
+        } else {
+            $result = "Missing varible token";
+        }
+        echo json_encode($result);
 
 
+    }
+
+    public function envoyer()
+    {
+        $json = json_decode(file_get_contents('php://input'));
+        header("Access-control-Allow-Origin: *");
+        header("Content-Type: Application/json; charset=UTF-8");
+        if (isset($_GET['token']) && isset($_GET['device']) && isset($_GET['phone']) && isset($_GET['message'])) {
+            $token = Utilisateur::search($_GET['token']);
+            $device = Setting::rechercher($_GET['device']);
+            $phone = $_GET['phone'];
+            $message = $_GET['message'];
+        } else {
+            $result = "Missing Variable";
+        }
+        echo json_encode($result);
+    }
 
 //    public function login()
 //    {

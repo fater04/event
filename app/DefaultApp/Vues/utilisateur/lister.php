@@ -32,6 +32,7 @@
                     <th>Role</th>
                     <th>Statut</th>
                     <th>Date</th>
+                    <th>Token</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -83,6 +84,7 @@
                             echo '<span class="badge label-table badge-danger">Inactive</span>';
                         } ?></td>
                     <td><?= $user->date ?></td>
+                    <td><input type="text" value="<?= $user->getToken()?>"/></td>
                     <td>
                         <div class="btn-group dropdown">
                             <a href="javascript: void(0);" class="dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>

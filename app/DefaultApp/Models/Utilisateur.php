@@ -131,6 +131,21 @@ static function confirme($id)
     self::connection()->query($req);
     $con = null;
 }
+    public static function genereToken($id,$key)
+    {
+        try {
+            $req = "update utilisateur set token='" .$key. "' WHERE id='" . $id . "'";
+            $con = self::connection();
+            if ($con->query($req)) {
+                return "ok";
+            } else {
+                return "no";
+            }
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
 
 public
 static function email_confirme($url)

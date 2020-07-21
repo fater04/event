@@ -9,6 +9,7 @@ class ComposerStaticInit5bad37c75314d6250d7fe63a2363b3a7
     public static $prefixLengthsPsr4 = array (
         'P' => 
         array (
+            'Plasticbrain\\FlashMessages\\' => 27,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
         'I' => 
@@ -18,6 +19,10 @@ class ComposerStaticInit5bad37c75314d6250d7fe63a2363b3a7
     );
 
     public static $prefixDirsPsr4 = array (
+        'Plasticbrain\\FlashMessages\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/plasticbrain/php-flash-messages/src',
+        ),
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',

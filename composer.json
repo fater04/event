@@ -11,7 +11,9 @@
   ],
   "require": {
     "phpmailer/phpmailer": "^6.0",
-    "ifsnop/mysqldump-php": "^2.8"
+    "ifsnop/mysqldump-php": "^2.8",
+    "plasticbrain/php-flash-messages": "^1.0",
+    "ext-openssl": "*"
   },
   "autoload":{
     "psr-4":{

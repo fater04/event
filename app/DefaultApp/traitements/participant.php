@@ -24,6 +24,9 @@ if (isset($_POST['addP'])) {
     $sexe = trim(addslashes($_POST['sexe']));
     $profession = trim(addslashes($_POST['profession']));
 
+    $ev1=\app\DefaultApp\Models\Event::rechercher($id_event);
+    $appareil=\app\DefaultApp\Models\Setting::rechercher($ev1->getIdConfig());
+
     $p = new \app\DefaultApp\Models\Participant();
     $p->setNom($nom);
     $p->setEmail($email);
@@ -33,6 +36,8 @@ if (isset($_POST['addP'])) {
     $p->setIdEvent($id_event);
     $p->setIdUser(\app\DefaultApp\Models\Event::rechercher_user($id_event));
     $p->setProfession($profession);
+    $p->setMessage($appareil->getMessage());
+    $p->setDevice($appareil->getDeviceId());
     $resultat = $p->Enregistrer();
     if ($resultat == "ok") {
         if ($_SESSION['role'] == "admin") {

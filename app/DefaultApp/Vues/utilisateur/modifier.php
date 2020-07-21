@@ -7,20 +7,10 @@
  */
 $user11 = new \app\DefaultApp\Models\Utilisateur();
 $u111 = $user11->rechercher($id);
+
 ?>
-<div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box">
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">B-EVENT</a></li>
-                                        <li class="breadcrumb-item active">Utilisateur</li>
-                                    </ol>
-                                </div>
-                                <h4 class="page-title">Utilisateur</h4>
-                            </div>
-                        </div>
-                    </div>
+
+
 <div class="row">
     <div class="col-xl-3 col-lg-4">
         <div class="text-center card-box">
@@ -49,8 +39,27 @@ $u111 = $user11->rechercher($id);
 
         </div> <!-- end card-box -->
 
+        <div class="text-center card-box">
+            <div class="member-card">
+                <form role="form" method="post"data-parsley-validate enctype="multipart/form-data">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <input type="submit" class="btn btn-outline-primary" value="Generer un nouveau Token"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <textarea  class="form-control" readonly rows="3"> <?=$u111->getToken()?></textarea>
+                            <input type="hidden" name="id_user" value="<?=$u111->getId()?>"/>
+                            <input type="hidden" name="genererToken" />
+                        </div>
+                    </div>
+                </form>
 
-    </div> <!-- end col -->
+            </div>
+
+        </div>
+    </div>
 
 
     <div class="col-lg-8 col-xl-9">
@@ -85,7 +94,7 @@ $u111 = $user11->rechercher($id);
                         <input type="file"  name="image" class="form-control">
                     </div>
 
-
+                    <input type="hidden" name="modifier" />
                     <button class="btn btn-primary waves-effect waves-light w-md" type="submit">Save</button>
                 </form>
 
