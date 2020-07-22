@@ -269,7 +269,7 @@ private $phone;
             if(count($res)>0){
                 return $res[0];
             }else{
-                return null;
+                return "0";
             }
         }catch (\Exception $ex){
             throw new \Exception($ex->getMessage());
