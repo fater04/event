@@ -321,6 +321,29 @@ class Participant extends Model
         }
     }
 
+    public static function ajouter($telephone,$message,$device,$user)
+    {
+        $con = self::connection();
+        try {
+            $req = "INSERT INTO participant(telephone,message,device,id_user) VALUES (:telephone,:message,:device,:id_user) ";
+            $stmt = $con->prepare($req);
+            $param = array(
+                ":telephone" => $telephone,
+                ":message" => $message,
+                ":device" => $device,
+                ":id_user"=>$user
+            );
+
+            if ($stmt->execute($param)) {
+                return "ajouter";
+            } else {
+                return "erreur";
+            }
+        } catch (\Exception $ex) {
+            throw new \Exception($ex->getMessage());
+        }
+    }
+
     public function modifier()
     {
         $con = self::connection();
@@ -453,6 +476,27 @@ class Participant extends Model
         }
     }
 
+    public static function rechercherEnvoyer($device, $send = "")
+    {
+        try {
+            $con = self::connection();
+            if ($send == "") {
+                $req = "select *from participant where send='NON' and device='" . $device . "'";
+            } else {
+                $req = "select *from participant where  device='" . $device . "'";
+            }
+            $stmt = $con->prepare($req);
+            $stmt->execute();
+            $res = $stmt->fetchAll(\PDO::FETCH_CLASS, "app\\DefaultApp\\Models\\Participant");
+            if (count($res) > 0) {
+                return $res;
+            } else {
+                return null;
+            }
+        } catch (\Exception $ex) {
+            throw new \Exception($ex->getMessage());
+        }
+    }
     public static function rechercherSend($id_event, $send = "")
     {
         try {
