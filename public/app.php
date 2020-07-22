@@ -56,7 +56,11 @@ try {
                 <div class="col-lg-6">
                     <div class="message-box">
                         <h1 class="m-b-0">404</h1>
-                        <h4>Page not found   <?php throw new \Exception($ex->getMessage()); ?></h4>
+                        <h2>Page not found  
+                     <?php 
+                    //  throw new \Exception($ex->getMessage()); 
+                     ?>
+                        </h2>
                         <div class="buttons-con">
                             <div class="action-link-wrap">
                                 <a onclick="history.back(-1)" href="#" class="btn btn-custom btn-primary waves-effect waves-light m-t-20">Go Back</a>

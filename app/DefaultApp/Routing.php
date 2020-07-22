@@ -8,7 +8,7 @@ App::post("/check", "Api.check", "check");
 App::post("/updatesend", "Api.updatesend", "updatesend");
 App::post("/check-config", "Api.checkConfig", "check-config");
 App::get("/user","api.rechercherUser");
-App::get("envoyer","api.envoyer");
+App::post("envoyer","api.envoyer");
 
 
 //bios_sms_sender_v1.0.0.apk
