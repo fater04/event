@@ -100,7 +100,7 @@ class ApiControlleur extends Controlleur
         header("Content-Type: Application/json; charset=UTF-8");
         if (isset($_GET['token']) && isset($_GET['device']) && isset($_GET['phone']) && isset($_GET['message'])) {
             $token = Utilisateur::Rechercher($_GET['token']);
-            if (count($token) == 0) {
+            if ($token == 0) {
                 $device = Setting::rechercher($_GET['device']);
                 if($device!=0){
                     $phone = $_GET['phone'];

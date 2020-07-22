@@ -403,7 +403,7 @@ class Utilisateur extends Model
 
         } else {
             $con = null;
-            return null;
+            return "0";
         }
     }
 
