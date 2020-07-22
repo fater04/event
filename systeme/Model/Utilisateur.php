@@ -403,7 +403,34 @@ class Utilisateur extends Model
 
         } else {
             $con = null;
-            return "0";
+            return null;
+        }
+    }
+
+    public static function RechercherToken($critere)
+    {
+        $req = "select *from utilisateur where  token='" . $critere . "'";
+        $rs = self::connection()->query($req);
+        if ($data = $rs->fetch()) {
+            $con = null;
+            $u = new Utilisateur();
+            $u->setId($data['id']);
+            $u->setNom($data['nom']);
+            $u->setPrenom($data['prenom']);
+            $u->setEmail($data['email']);
+            $u->setRole($data['role']);
+            $u->setActive($data['active']);
+            $u->setMotdepasse($data['motdepasse']);
+            $u->setPseudo($data['pseudo']);
+            $u->setStatut($data['statut']);
+            $u->setPhoto($data['photo']);
+            $u->setTelephone($data['telephone']);
+            $u->setToken($data['token']);
+            return $u;
+
+        } else {
+            $con = null;
+            return null;
         }
     }
 

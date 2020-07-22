@@ -41,7 +41,7 @@ class UtilisateurControlleur extends Controlleur
                 $image->Upload();
                 $photo = $image->getSrc();
             }
-            $user->setPhoto($photo);
+            $user->setPhoto("https://event.bioshaiti.com/".$photo);
             $user->setNom($nom);
             $user->setPrenom($prenom);
             $user->setEmail($email);
@@ -98,7 +98,7 @@ class UtilisateurControlleur extends Controlleur
                 $image = new \app\DefaultApp\Models\Image($_FILES['image']['name']);
                 $image->Upload();
                 $photo = $image->getSrc();
-                $user->setPhoto($photo);
+                $user->setPhoto("https://event.bioshaiti.com/".$photo);
                 $resultat = $user->modifierP();
             } else {
                 $resultat = $user->modifierS();
@@ -162,7 +162,7 @@ class UtilisateurControlleur extends Controlleur
                     $image = new \app\DefaultApp\Models\Image($_FILES['image']['name']);
                     $image->Upload();
                     $photo = $image->getSrc();
-                    $user->setPhoto($photo);
+                    $user->setPhoto("https://event.bioshaiti.com/".$photo);
                     $resultat = $user->modifierP();
                 } else {
                     $resultat = $user->modifierS();

@@ -335,9 +335,9 @@ class Participant extends Model
             );
 
             if ($stmt->execute($param)) {
-                return "ajouter";
+                return "ok";
             } else {
-                return "erreur";
+                return "no";
             }
         } catch (\Exception $ex) {
             throw new \Exception($ex->getMessage());
